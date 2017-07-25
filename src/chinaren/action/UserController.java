@@ -1,6 +1,7 @@
 package chinaren.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -58,11 +59,24 @@ public class UserController {
                 request.getSession().getAttribute(SessionContext.ATTR_USER_ID).toString()), request, response);
     }
 
+    @RequestMapping(value = "/othersHeadImage", method = RequestMethod.GET)
+    @ResponseBody
+    public void displayHeadImage(@RequestParam("userId") long userId, HttpServletRequest request, HttpServletResponse response) {
+        userService.outputHeadImage(userId, request, response);
+    }
+
     @RequestMapping(value = "/sendEmail", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
-    public void sendEmail(@RequestParam("email") String email, HttpServletResponse response) {
+    public void sendEmail(@RequestParam("email") String email, HttpServletResponse response) throws IOException {
         logger.info(dateFormat.format(new Date()) + "send email to " + email);
-	    userService.sendEmail(email);
+        PrintWriter out = response.getWriter();
+	    if (userService.sendEmail(email).isSuccessful()) {
+            out.append("successful");
+            out.flush();
+        } else {
+            out.append("failed");
+            out.flush();
+        }
     }
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)

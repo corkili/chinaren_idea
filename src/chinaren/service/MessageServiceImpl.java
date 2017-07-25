@@ -80,7 +80,7 @@ public class MessageServiceImpl implements MessageService {
 	 */
 	@Override
 	public Result<List<Message>> getUserMessages(long userId) {
-		logger.info(dateFormat.format(new Date()) + "get user's message lis - user " + userId);
+		logger.info(dateFormat.format(new Date()) + "get user's message list - user " + userId);
 		return messageDao.selectMessageByUserId(userId);
 	}
 
@@ -89,7 +89,7 @@ public class MessageServiceImpl implements MessageService {
 	 */
 	@Override
 	public Result<List<Message>> getClassMessages(long classId) {
-		logger.info(dateFormat.format(new Date()) + "get class's message lis - class " + classId);
+		logger.info(dateFormat.format(new Date()) + "get class's message list - class " + classId);
 		return messageDao.selectMessagesByClassId(classId);
 	}
 

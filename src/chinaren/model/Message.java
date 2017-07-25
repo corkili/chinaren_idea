@@ -1,7 +1,7 @@
 package chinaren.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +18,7 @@ import chinaren.dao.BaseDao;
  */
 @Entity
 @Table(name = BaseDao.TABLE_MESSAGE)
-public class Message implements Serializable {
+public class Message implements Serializable, Comparable<Message> {
 
 	private static final long serialVersionUID = -3394925740684560555L;
 
@@ -47,10 +47,22 @@ public class Message implements Serializable {
 	private long userId;
 
 	/**
+	 * 发布留言的用户的姓名
+	 */
+	@Column(name = BaseDao.COL_NAME)
+	private String name;
+
+	/**
 	 * 留言所属班级的ID
 	 */
 	@Column(name = BaseDao.COL_CLASS_ID)
 	private long classId;
+
+	/**
+	 * 留言所属班级的名称
+	 */
+	@Column(name = BaseDao.COL_CLASS_NAME)
+	private String className;
 
 	/**
 	 * @return the messageId
@@ -120,5 +132,26 @@ public class Message implements Serializable {
 	 */
 	public void setClassId(long classId) {
 		this.classId = classId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	@Override
+	public int compareTo(Message o) {
+		return -this.msgTime.compareTo(o.getMsgTime());
 	}
 }

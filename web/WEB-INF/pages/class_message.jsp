@@ -69,7 +69,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>管理班级</h3>
+                        <h3>班级留言</h3>
                     </div>
                 </div>
 
@@ -80,7 +80,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>成员列表<small>${clazz.className}</small></h2>
+                                <h2>班级列表</h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
@@ -93,18 +93,17 @@
                                     <table id="datatable" class="table table-striped jambo_table" style="white-space: nowrap;">
                                         <thead>
                                         <tr class="headings">
-                                            <th class="column-title">ID</th>
-                                            <th class="column-title">姓名</th>
-                                            <th class="column-title">性别</th>
-                                            <th class="column-title">电话</th>
-                                            <th class="column-title">邮箱</th>
+                                            <th class="column-title">班级ID</th>
+                                            <th class="column-title">班级名称</th>
+                                            <th class="column-title">学校</th>
+                                            <th class="column-title">年级</th>
                                             <th class="column-title">地址</th>
-                                            <th class="column-title">状态</th>
+                                            <th class="column-title">班级人数</th>
                                             <th class="column-title no-link last"><span class="nobr">操作</span></th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach items="${classmates}" varStatus="status">
+                                        <c:forEach items="${myClasses}" varStatus="status">
                                             <c:choose>
                                                 <c:when test="${status.index % 2 == 0}">
                                                     <tr class="even pointer">
@@ -113,59 +112,22 @@
                                                     <tr class="odd pointer">
                                                 </c:otherwise>
                                             </c:choose>
-                                            <td class=" ">${classmates[status.index].userId}</td>
-                                            <td class=" ">${classmates[status.index].name}</td>
-                                            <td class=" ">${classmates[status.index].sex}</td>
-                                            <td class=" ">${classmates[status.index].phone}</td>
-                                            <td class=" ">${classmates[status.index].email}</td>
-                                            <td class=" ">${classmates[status.index].province}&nbsp;
-                                                    ${classmates[status.index].city}&nbsp;${classmates[status.index].area}</td>
-                                            <td class=" "><span style="color: #008800;">已加入</span></td>
+                                            <td class=" ">${myClasses[status.index].classId}</td>
+                                            <td class=" ">${myClasses[status.index].className}</td>
+                                            <td class=" ">${myClasses[status.index].school}</td>
+                                            <td class=" ">${myClasses[status.index].gradeYear}</td>
+                                            <td class=" ">${myClasses[status.index].province}&nbsp;
+                                                    ${myClasses[status.index].city}&nbsp;${myClasses[status.index].area}</td>
+                                            <td class=" ">${myClasses[status.index].classmates.size()}</td>
                                             <td class=" last">
-                                                <form action="removeClassmate" method="post" onsubmit="return checkRemoveClassmate(this);">
-                                                    <input type="hidden" name="user_id" value="${classmates[status.index].userId}">
-                                                    <input type="hidden" name="manager_id" value="${user_id}">
-                                                    <input type="hidden" name="class_id" value="${clazz.classId}">
-                                                    <input type="submit" value="删除成员"
-                                                           onclick="return confirm('确认删除成员-${classmates[status.index].name}？');"
-                                                           class="btn btn-round btn-danger">
-                                                </form>
-                                            </td>
-                                            </tr>
-                                        </c:forEach>
-                                        <c:forEach items="${applyUsers}" varStatus="status">
-                                            <c:choose>
-                                                <c:when test="${status.index % 2 == 0}">
-                                                    <tr class="even pointer">
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <tr class="odd pointer">
-                                                </c:otherwise>
-                                            </c:choose>
-                                            <td class=" ">${applyUsers[status.index].userId}</td>
-                                            <td class=" ">${applyUsers[status.index].name}</td>
-                                            <td class=" ">${applyUsers[status.index].sex}</td>
-                                            <td class=" ">${applyUsers[status.index].phone}</td>
-                                            <td class=" ">${applyUsers[status.index].email}</td>
-                                            <td class=" ">${applyUsers[status.index].province}&nbsp;
-                                                    ${applyUsers[status.index].city}&nbsp;${applyUsers[status.index].area}</td>
-                                            <td class=" "><span style="color: #FF1800;">待审核</span></td>
-                                            <td class=" last">
-                                                <form action="allowJoin" method="post">
-                                                    <input type="hidden" name="user_id" value="${applyUsers[status.index].userId}">
-                                                    <input type="hidden" name="manager_id" value="${user_id}">
-                                                    <input type="hidden" name="class_id" value="${clazz.classId}">
-                                                    <input type="submit" value="同意"
-                                                           onclick="return confirm('确认允许成员加入-${applyUsers[status.index].name}？');"
-                                                           class="btn btn-round btn-danger">
-                                                </form>
-                                                <form action="refuseJoin" method="post">
-                                                    <input type="hidden" name="user_id" value="${applyUsers[status.index].userId}">
-                                                    <input type="hidden" name="manager_id" value="${user_id}">
-                                                    <input type="hidden" name="class_id" value="${clazz.classId}">
-                                                    <input type="submit" value="拒绝"
-                                                           onclick="return confirm('确认拒绝成员加入-${applyUsers[status.index].name}？');"
-                                                           class="btn btn-round btn-danger">
+                                                <form action="classMessage" method="post">
+                                                    <input type="hidden" name="action" value="0">
+                                                    <input type="hidden" name="user_id" value="${user_id}">
+                                                    <input type="hidden" name="class_id" value="${myClasses[status.index].classId}">
+                                                    <input type="hidden" name="class_name" value="${myClasses[status.index].className}">
+                                                    <input type="hidden" name="manager_id" value="${myClasses[status.index].managerId}">
+                                                    <input type="submit" value="查看班级留言板"
+                                                           class="btn btn-round btn-info">
                                                 </form>
                                             </td>
                                             </tr>

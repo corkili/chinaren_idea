@@ -58,6 +58,14 @@ function checkRemoveClassmate(form) {
     return true;
 }
 
+function checkRemoveMessage(form) {
+    if (form.user_id.value != form.manager_id.value && form.user_id.value != form.msg_user_id.value) {
+        alert("非班级管理员不能删除他人的留言");
+        return false;
+    }
+    return true;
+}
+
 function checkEmail() {
     var reg = /^\s*\w+(?:\.{0,1}[\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\.[a-zA-Z]+\s*$/;
     var emailStr = $$('email').value;

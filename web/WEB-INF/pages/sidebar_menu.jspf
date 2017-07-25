@@ -20,7 +20,7 @@
                 <ul class="nav child_menu">
                     <li><a href="createClass">创建班级</a></li>
                     <li><a href="manageClass">班级管理</a></li>
-                    <li><a href="#">班级留言</a></li>
+                    <li><a href="classMessage">班级留言</a></li>
                 </ul>
             </li>
             <li><a><i class="fa fa-envelope-square"></i> 关于 <span class="fa fa-chevron-down"></span></a>

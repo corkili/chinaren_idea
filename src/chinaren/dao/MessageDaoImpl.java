@@ -125,21 +125,21 @@ public class MessageDaoImpl extends BaseDao implements MessageDao {
 	public Result<Message> insertMessage(Message message) {
 		logger.info(dateFormat.format(new Date()) + "action: insert a message");
 		String sql = "insert into " + TABLE_MESSAGE + " (" + COL_CONTENT + ","
-				+ COL_MSG_TIME + "," + COL_USER_ID + "," + COL_CLASS_ID + ") "
-				+ "values(?,?,?,?)";
+				+ COL_MSG_TIME + "," + COL_USER_ID + "," + COL_NAME + ","
+				+ COL_CLASS_ID + "," + COL_CLASS_NAME + ") " + "values(?,?,?,?,?,?)";
 		logger.info(dateFormat.format(new Date()) + "sql: " + sql);
 		Message msg = null;
 		boolean successful = false;
 		String resultMessage = "";
 		try {
-			Object[] params = { message.getContent(), message.getMsgTime(), 
-					message.getUserId(), message.getClassId() };
+			Object[] params = { message.getContent(), message.getMsgTime(), message.getUserId(),
+					message.getName(), message.getClassId(), message.getClassName() };
 			successful = jdbcTemplate.update(sql, params) == 1;
 			resultMessage = successful ? "insert<successful>" : "insert<failed>";
 			if (successful) {
 				successful = false;
 				for (Message m : selectMessageByUserId(message.getUserId()).getResult()) {
-					if (m.getClassId() == message.getClassId()) {
+					if (m.getClassId() == message.getClassId() && m.getMsgTime().equals(message.getMsgTime())) {
 						msg = m;
 						successful = true;
 						break;

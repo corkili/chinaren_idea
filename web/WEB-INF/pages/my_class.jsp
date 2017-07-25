@@ -44,6 +44,15 @@
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
 
+    <style>
+        th{
+            text-align: center;
+        }
+        td{
+            text-align: center;
+        }
+    </style>
+
 </head>
 
 <body class="nav-md">
