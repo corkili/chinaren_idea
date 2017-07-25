@@ -131,6 +131,14 @@ public interface ClassService {
 	 * @return 删除班级操作结果
 	 */
 	public Result<Boolean> removeClass(long managerId, long classId);
-	
+
+	/**
+	 * 删除班级服务
+	 * @author 李浩然
+	 * @param managerId 管理者用户ID
+	 * @param classId 班级的ID
+	 * @return 删除班级操作结果
+	 */
+	public Result<Boolean> modifyDescription(long managerId, long classId, String description);
 	
 }

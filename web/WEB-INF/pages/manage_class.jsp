@@ -44,6 +44,34 @@
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
 
+    <script>
+        function editClass(name,des,id) {
+            document.getElementById('editDiv').style.display='';
+            document.getElementById('editTitle').innerHTML=name;
+            document.getElementById('editDescription').value=des;
+            document.getElementById('editClassId').value=id;
+        }
+        
+        function cancelEditClass() {
+            document.getElementById('editDiv').style.display='none';
+        }
+        
+        function submitEditClass() {
+            $.post('modifyDescription', {
+                class_id: document.getElementById('editClassId').value,
+                description: document.getElementById('editDescription').value
+            }, function (data) {
+                if (data.indexOf('successful')) {
+                    alert('修改成功!');
+                    document.getElementById('editDiv').style.display='none';
+                } else {
+                    alert('修改失败，请重试！');
+                }
+
+            });
+        }
+    </script>
+
 </head>
 
 <body class="nav-md">
@@ -65,6 +93,32 @@
                 </div>
 
                 <div class="clearfix"></div>
+
+                <div class="row" id="editDiv" style="display: none">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2 id="editTitle"></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="x_content">
+                                <label for="editDescription">班级简介 :</label>
+                                <input type="hidden" id="editClassId"/>
+                                <textarea id="editDescription" required="required" class="form-control" name="editDescription"
+                                          data-parsley-trigger="keyup" data-parsley-maxlength="200"
+                                          data-parsley-validation-threshold="10"></textarea>
+                                <br/>
+                                <button class="btn btn-primary" onclick="submitEditClass()">提交</button>
+                                <button class="btn btn-dark" onclick="cancelEditClass()">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- my class list -->
                 <div class="row">
@@ -92,6 +146,7 @@
                                             <th class="column-title">班级人数</th>
                                             <th class="column-title">待审核人数</th>
                                             <th class="column-title">成员管理</th>
+                                            <th class="column-title">班级简介</th>
                                             <th class="column-title no-link last"><span class="nobr">操作</span></th>
                                         </tr>
                                         </thead>
@@ -121,6 +176,13 @@
                                                     <input type="submit" value="成员管理"
                                                            class="btn btn-round btn-primary">
                                                 </form>
+                                            </td>
+                                            <td>
+                                            <button type="button" value="编辑" class="btn btn-round btn-success"
+                                                   onclick="editClass('${manageClasses[status.index].className}',
+                                                           '${manageClasses[status.index].description}',
+                                                           '${manageClasses[status.index].classId}')">编辑</button>
+
                                             </td>
                                             <td class=" last">
                                                 <form action="removeClass" method="post">

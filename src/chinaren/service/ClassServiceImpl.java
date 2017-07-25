@@ -356,4 +356,30 @@ public class ClassServiceImpl implements ClassService {
 		return new Result<Boolean>(true, "删除班级成功", true);
 	}
 
+
+	@Override
+	public Result<Boolean> modifyDescription(long managerId, long classId, String description) {
+        logger.info(dateFormat.format(new Date()) + "modify class's description - manager " + managerId
+                + " modify " + classId);
+        Result<Class> result = classDao.selectClassByClassId(classId);
+        if (!result.isSuccessful()) {
+            logger.info(dateFormat.format(new Date()) + "modify class's description: failed - manager " + managerId
+                    + " modify " + classId);
+            return new Result<Boolean>(false, "不存在相应的班级", false);
+        }
+        if (!result.getResult().isManager(managerId)) {
+            logger.info(dateFormat.format(new Date()) + "modify class's description: failed - manager " + managerId
+                    + " modify " + classId);
+            return new Result<Boolean>(false, "非班级管理员不能进行此操作", false);
+        }
+        if (!classDao.updateDescription(classId, description).isSuccessful()) {
+            logger.info(dateFormat.format(new Date()) + "modify class's description: failed - manager " + managerId
+                    + " modify " + classId);
+            return new Result<Boolean>(false, "数据库错误，请重试", false);
+        }
+        logger.info(dateFormat.format(new Date()) + "modify class's description: successful - manager " + managerId
+                + " modify " + classId);
+        return new Result<Boolean>(true, "修改班级简介成功", true);
+	}
+
 }

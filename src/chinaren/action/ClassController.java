@@ -12,7 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -183,5 +186,21 @@ public class ClassController {
                 .addObject("classmates", classService.getUsersByClassId(classId, true).getResult())
                 .addObject("applyUsers", classService.getUsersByClassId(classId, false).getResult());
         return  modelAndView;
+    }
+
+    @RequestMapping(value = "/modifyDescription", method = RequestMethod.POST)
+    @ResponseBody
+    public void modifyDescription(@RequestParam("class_id") long classId, HttpSession session,
+                                  @RequestParam("description") String description,
+                                  HttpServletResponse response) throws IOException {
+        long managerId = Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
+        PrintWriter out = response.getWriter();
+        if (classService.modifyDescription(managerId, classId, description).isSuccessful()) {
+            out.append("successful");
+            out.flush();
+        } else {
+            out.append("failed");
+            out.flush();
+        }
     }
 }

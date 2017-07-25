@@ -115,9 +115,9 @@
                                         <form:option value="0">---请选择地区---</form:option>
                                     </form:select>
 
-                                    <label for="decription">班级简介 :</label>
-                                    <form:textarea path="description" id="decription" required="required"
-                                                   class="form-control" name="decription" data-parsley-trigger="keyup"
+                                    <label for="description">班级简介 :</label>
+                                    <form:textarea path="description" id="description" required="required"
+                                                   class="form-control" name="description" data-parsley-trigger="keyup"
                                                    data-parsley-maxlength="200"
                                               data-parsley-validation-threshold="10"/>
 
