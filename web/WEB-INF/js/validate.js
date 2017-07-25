@@ -42,6 +42,14 @@ function checkCreateClassForm() {
     }
 }
 
+function checkExitClassForm(form) {
+    if (form.user_id.value == form.manager_id.value) {
+        alert("班级管理者不能进行此操作！");
+        return false;
+    }
+    return true;
+}
+
 function checkEmail() {
     var reg = /^\s*\w+(?:\.{0,1}[\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\.[a-zA-Z]+\s*$/;
     var emailStr = $$('email').value;

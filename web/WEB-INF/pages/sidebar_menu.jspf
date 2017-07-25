@@ -12,7 +12,7 @@
             <li><a><i class="fa fa-child"></i> 我的 <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="modifyInformation">信息修改</a></li>
-                    <li><a href="#">我的班级</a></li>
+                    <li><a href="myClass">我的班级</a></li>
                     <li><a href="#">我的留言</a></li>
                 </ul>
             </li>

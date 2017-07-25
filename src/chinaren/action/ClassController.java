@@ -8,14 +8,12 @@ import chinaren.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 /**
  * Created by 李浩然 on 2017/7/25.
@@ -37,6 +35,7 @@ public class ClassController {
                                     @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
         Class clazz = new Class();
         clazz.setManagerId(Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString()));
+        clazz.setManagerName(displayName);
         ModelAndView modelAndView = new ModelAndView("create_class");
         modelAndView.addObject("has_error", false)
                 .addObject("error_message", "")
@@ -67,5 +66,30 @@ public class ClassController {
         }
         modelAndView.setViewName("redirect:/main");
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/myClass", method = RequestMethod.GET)
+    public ModelAndView getMyClassList(HttpSession session,
+                                       @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView("my_class");
+        long userId = Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
+        Result<List<Class>> myClassResult = classService.getClasses(userId, true);
+        Result<List<Class>> applyClassResult = classService.getClasses(userId, false);
+        modelAndView.addObject("has_error", false)
+                .addObject("error_message", "")
+                .addObject("display_name", displayName)
+                .addObject("user_id", userId)
+                .addObject("myClasses", myClassResult.getResult())
+                .addObject("applyClasses", applyClassResult.getResult());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/exitClass", method = RequestMethod.POST)
+    public ModelAndView exitClassList(HttpSession session,
+                                      @RequestParam("class_id") long classId,
+                                      @SessionAttribute(SessionContext.ATTR_USER_ID) long userId) {
+        ModelAndView modelAndView = new ModelAndView("redirect:/myClass");
+        classService.exitClass(userId, classId);
+        return  modelAndView;
     }
 }

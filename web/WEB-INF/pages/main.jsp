@@ -100,12 +100,13 @@
                                                         <p><strong><i class="fa fa-male"></i> 性别：</strong>${user.sex}</p>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <p><strong><i class="fa fa-female"></i> 性别：</strong>${user.sex}</p>
+                                                        <p><strong><i class="fa fa-female"></i> &nbsp;&nbsp;性别：</strong>${user.sex}</p>
                                                     </c:otherwise>
                                                 </c:choose>
                                                 <p><strong><i class="fa fa-phone"></i>  手机：</strong>${user.phone}</p>
                                                 <p><strong><i class="fa fa-envelope"></i> 邮箱：</strong>${user.email}</p>
-                                                <p><strong><i class="fa fa-map-marker"></i> 地址：</strong>${user.province}${user.city}${user.area}</p>
+                                                <p><strong><i class="fa fa-map-marker"></i> &nbsp;&nbsp;地址：</strong>
+                                                    ${user.province}&nbsp;${user.city}&nbsp;${user.area}</p>
                                                 <p>
                                                     <strong><i class="fa fa-eraser"></i> 个人简介：</strong><br/>
                                                     ${user.introduction}

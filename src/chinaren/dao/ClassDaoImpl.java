@@ -404,7 +404,7 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 		String message = "";
 		try {
 			Object[] params = { clazz.getSchool(), clazz.getClassName(), clazz.getGradeYear(),
-					clazz.getDecription(), clazz.getProvince(), clazz.getCity(), 
+					clazz.getDescription(), clazz.getProvince(), clazz.getCity(),
 					clazz.getArea(), clazz.getManagerId()};
 			successful = jdbcTemplate.update(sql, params) == 1;
 			message = successful ? "insert<successful>" : "insert<failed>";

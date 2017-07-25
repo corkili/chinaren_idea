@@ -51,7 +51,7 @@ public class Class implements Serializable{
 	 * 班级描述
 	 */
 	@Column(name = BaseDao.COL_DESCRIPTION)
-	private String decription;
+	private String description;
 
 	/**
 	 * 班级所在省份
@@ -76,6 +76,9 @@ public class Class implements Serializable{
 	 */
 	@Column(name = BaseDao.COL_MANAGER_ID)
 	private long managerId;
+
+	@Column(name = BaseDao.COL_MANAGER_NAME)
+	private String managerName;
 	
 	/**
 	 * 班级中所有同学的ID列表
@@ -148,20 +151,6 @@ public class Class implements Serializable{
 	 */
 	public void setGradeYear(String gradeYear) {
 		this.gradeYear = gradeYear;
-	}
-
-	/**
-	 * @return the decription
-	 */
-	public String getDecription() {
-		return decription;
-	}
-
-	/**
-	 * @param decription the decription to set
-	 */
-	public void setDecription(String decription) {
-		this.decription = decription;
 	}
 
 	/**
@@ -271,6 +260,22 @@ public class Class implements Serializable{
 	 */
 	public boolean isManager(long userId) {
 		return userId == this.managerId;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getManagerName() {
+		return managerName;
+	}
+
+	public void setManagerName(String managerName) {
+		this.managerName = managerName;
 	}
 }
 

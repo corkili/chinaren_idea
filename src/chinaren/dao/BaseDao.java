@@ -158,6 +158,11 @@ public abstract class BaseDao {
 	 * 班级管理者ID字段名
 	 */
 	public static final String COL_MANAGER_ID = "managerId";
+
+	/**
+	 * 班级管理者姓名
+	 */
+	public static final String COL_MANAGER_NAME = "managerName";
 	
 	/**
 	 * 班级-同学关系ID字段名

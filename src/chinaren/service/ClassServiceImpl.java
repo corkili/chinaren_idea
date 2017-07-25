@@ -166,8 +166,8 @@ public class ClassServiceImpl implements ClassService {
 			return new Result<Boolean>(false, "已存在相同名称的班级", false);
 		}
 		
-		if (clazz.getDecription() == null || clazz.getDecription().trim().equals("")) {
-			clazz.setDecription("班长很懒，未留下任何东西！");
+		if (clazz.getDescription() == null || clazz.getDescription().trim().equals("")) {
+			clazz.setDescription("班长很懒，未留下任何东西！");
 		}
 		
 		Result<Class> result = classDao.insertClass(clazz); 
