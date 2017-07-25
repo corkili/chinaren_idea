@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import chinaren.common.UserContext;
+import chinaren.service.UserServiceImpl.UserContext;
 import chinaren.dao.AttendDao;
 import chinaren.dao.BaseDao;
 import chinaren.dao.ClassDao;
@@ -35,15 +35,15 @@ public class ClassServiceImpl implements ClassService {
 	private Logger logger = Logger.getLogger(ClassServiceImpl.class);
 	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss - ");
-	
-	private UserContext userContext;
-	
+
+	@Autowired
+	private UserService userService;
+
 	/**
 	 * 构造方法
 	 */
 	public ClassServiceImpl() {
 		// logger.info(dateFormat.format(new Date()) + "");
-		userContext = UserContext.getUserContext();
 	}
 
 	/**
@@ -177,7 +177,7 @@ public class ClassServiceImpl implements ClassService {
 			return new Result<Boolean>(false, "数据库错误，请重试！", false);
 		}
 		logger.info(dateFormat.format(new Date()) + "create class: successful - class " + result.getResult().getClassId());
-		userContext.update(result.getResult().getManagerId());
+		userService.getUserContext().update(result.getResult().getManagerId());
 		return new Result<Boolean>(true, "创建班级成功", true);
 	}
 
@@ -197,7 +197,7 @@ public class ClassServiceImpl implements ClassService {
 			return new Result<Boolean>(false, "数据库错误，请重试", false);
 		}
 		logger.info(dateFormat.format(new Date()) + "apply to join class: successful - " + userId + " join " + classId);
-		userContext.update(userId, result.getResult().getManagerId());
+		userService.getUserContext().update(userId, result.getResult().getManagerId());
 		return new Result<Boolean>(true, "申请加入班级成功", true);
 	}
 
@@ -217,7 +217,7 @@ public class ClassServiceImpl implements ClassService {
 			return new Result<Boolean>(false, "数据库错误，请重试", false);
 		}
 		logger.info(dateFormat.format(new Date()) + "exit class: successful - " + userId + " exit " + classId);
-		userContext.update(userId, result.getResult().getManagerId());
+		userService.getUserContext().update(userId, result.getResult().getManagerId());
 		return new Result<Boolean>(true, "退出班级成功", true);
 	}
 
@@ -246,7 +246,7 @@ public class ClassServiceImpl implements ClassService {
 		}
 		logger.info(dateFormat.format(new Date()) + "allow join class: successful - " + managerId 
 				+ " allow " + userId + " join " + classId);
-		userContext.update(userId, managerId);
+		userService.getUserContext().update(userId, managerId);
 		return new Result<Boolean>(true, "允许加入班级成功", true);
 	}
 
@@ -275,7 +275,7 @@ public class ClassServiceImpl implements ClassService {
 		}
 		logger.info(dateFormat.format(new Date()) + "refuse join class: successful - " + managerId 
 				+ " refuse " + userId + " join " + classId);
-		userContext.update(userId, managerId);
+		userService.getUserContext().update(userId, managerId);
 		return new Result<Boolean>(true, "拒绝加入班级成功", true);
 	}
 
@@ -304,7 +304,7 @@ public class ClassServiceImpl implements ClassService {
 		}
 		logger.info(dateFormat.format(new Date()) + "remove classmate from class: successful - " + managerId 
 				+ " remove " + userId + " from " + classId);
-		userContext.update(userId, managerId);
+		userService.getUserContext().update(userId, managerId);
 		return new Result<Boolean>(true, "移除班级成员成功", true);
 	}
 
@@ -336,7 +336,7 @@ public class ClassServiceImpl implements ClassService {
 		List<Long> userId = new ArrayList<Long>();
 		userId.addAll(result.getResult().getClassmates());
 		userId.addAll(result.getResult().getNotApplys());
-		userContext.update(userId);
+		userService.getUserContext().update(userId);
 		return new Result<Boolean>(true, "删除班级成功", true);
 	}
 

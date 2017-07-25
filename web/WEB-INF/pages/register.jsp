@@ -268,15 +268,17 @@
 
     function change_city() {
         var cityList = cityMap[provinceMap[document.getElementById('province').value]];
+        var citySelector = document.getElementById('city');
         if (cityList == null) {
+            citySelector.length = 1;
+            document.getElementById('area').length = 1;
             return;
         }
-        var citySelector = document.getElementById('city');
         var count = 0;
         for (var key in cityList) {
             count++;
         }
-        citySelector.length = count + 1
+        citySelector.length = count + 1;
         var i = 1;
         for (key in cityList) {
             citySelector[i] = new Option(cityList[key], cityList[key]);
@@ -286,11 +288,14 @@
 
     function change_area() {
         var cityList = cityMap[provinceMap[document.getElementById('province').value]];
+        var citySelector = document.getElementById('city');
+        var areaSelector = document.getElementById('area');
         if (cityList == null) {
+            citySelector.length = 1;
             return;
         }
-        var citySelector = document.getElementById('city');
         if (citySelector.value === "0") {
+            areaSelector.length = 1;
             return;
         }
         var areaList = {};
@@ -304,7 +309,6 @@
         for (var key in areaList) {
             count++;
         }
-        var areaSelector = document.getElementById('area');
         areaSelector.length = count + 1;
         var i = 1;
         for (var key in areaList) {

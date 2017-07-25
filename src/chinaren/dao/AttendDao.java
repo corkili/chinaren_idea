@@ -20,7 +20,7 @@ public interface AttendDao {
 	 * @param status 审核状态
 	 * @return 包含一个用户ID列表的结果实例，若操作失败或不存在相应数据，结果中的列表为空列表
 	 */
-	public Result<List<Long>> selectUserIdByClassId(long classId, char status);
+	public Result<List<Long>> selectUserIdByClassId(long classId, String status);
 	
 	/**
 	 * 根据用户ID，从数据库中获取该用户所在的所有班级的ID
@@ -29,7 +29,7 @@ public interface AttendDao {
 	 * @param status 审核状态
 	 * @return 包含一个用户ID列表的结果实例，若操作失败或不存在相应数据，结果中的列表为空列表
 	 */
-	public Result<List<Long>> selectClassIdByUserId(long userId, char status);
+	public Result<List<Long>> selectClassIdByUserId(long userId, String status);
 	
 	/**
 	 * 向数据库中插入一条关系，表示一个用户加入了一个班级

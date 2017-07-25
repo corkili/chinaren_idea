@@ -29,7 +29,7 @@ public class HeadImageUtil {
 	 * 私有构造方法
 	 */
 	private HeadImageUtil() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	/**

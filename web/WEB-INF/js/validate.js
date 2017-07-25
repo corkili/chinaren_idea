@@ -2,7 +2,7 @@ function $$(id) {
     return  document.getElementById(id);
 }
 
-var defaultTextColor = $$('email').style.color;
+var defaultTextColor = "#888888";
 
 function checkRegisterForm() {
     if (checkEmail() && checkCode() && checkPassword() && checkConfirmPassword()
@@ -26,6 +26,15 @@ function checkResetPasswordForm() {
 
 function checkModifyInformationForm() {
     if (checkName() && checkPhone() && checkProvince() && checkCity() && checkArea()) {
+        return true;
+    } else {
+        alert("某些信息输入不正确，请检查红字部分！");
+        return false;
+    }
+}
+
+function checkCreateClassForm() {
+    if (checkClassName() && checkSchool() && checkYear() && checkProvince() && checkCity() && checkArea()) {
         return true;
     } else {
         alert("某些信息输入不正确，请检查红字部分！");
@@ -144,7 +153,7 @@ function checkArea() {
 }
 
 function checkVerificationCode() {
-    var reg = /^[0-9a-zA-Z]*$/
+    var reg = /^[0-9a-zA-Z]*$/;
     var captchaStr =  $$('captcha').value;
     if (captchaStr.length == 6 && reg.test(captchaStr)) {
         $$('captcha').style.color=defaultTextColor;
@@ -153,4 +162,42 @@ function checkVerificationCode() {
         $$('captcha').style.color="#FF0000";
         return false;
     }
+}
+
+
+function checkClassName() {
+    var classNameStr = $$('className').value;
+    if (classNameStr.length > 0) {
+        $$('className').style.color=defaultTextColor;
+        return true;
+    } else {
+        $$('className').style.color="#FF0000";
+        return false;
+    }
+}
+
+
+function checkSchool() {
+    var schoolStr = $$('school').value;
+    if (schoolStr.length > 0) {
+        $$('school').style.color=defaultTextColor;
+        return true;
+    } else {
+        $$('school').style.color="#FF0000";
+        return false;
+    }
+}
+
+
+function checkYear() {
+    var reg = /^[0-9]*$/
+    var yearStr = $$('gradeYear').value;
+    if (yearStr.length > 0 && reg.test(yearStr)) {
+        $$('gradeYear').style.color=defaultTextColor;
+        return true;
+    } else {
+        $$('gradeYear').style.color="#FF0000";
+        return false;
+    }
+
 }

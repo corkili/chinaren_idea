@@ -17,6 +17,8 @@ public class SessionContext {
 	 */
     public static final String ATTR_USER_ID = "userId";
 
+    public static final String ATTR_USER_NAME = "name";
+
     /**
      * 静态成员，单例
      */

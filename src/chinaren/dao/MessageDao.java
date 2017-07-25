@@ -53,4 +53,5 @@ public interface MessageDao {
 	 * @return 包含一个Boolean的结果实例
 	 */
 	public Result<Boolean> deleteMessage(long messageId);
+
 }

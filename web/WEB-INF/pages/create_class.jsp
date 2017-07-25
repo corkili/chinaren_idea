@@ -42,78 +42,6 @@
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
 
-    <style>
-        .file {
-            position: relative;
-            display: inline-block;
-            background: #D0EEFF;
-            border: 1px solid #99D3F5;
-            border-radius: 4px;
-            padding: 4px 12px;
-            overflow: hidden;
-            color: #1E88C7;
-            text-decoration: none;
-            text-indent: 0;
-            line-height: 20px;
-        }
-        .file input {
-            position: absolute;
-            font-size: 100px;
-            right: 0;
-            top: 0;
-            opacity: 0;
-        }
-        .file:hover {
-            background: #AADFFD;
-            border-color: #78C3F3;
-            color: #004974;
-            text-decoration: none;
-        }
-    </style>
-
-    <script type="text/javascript">
-        //定义id选择器
-        function Id(id){
-            return document.getElementById(id);
-        }
-        //入口函数，两个参数分别为<input type='file'/>的id，还有一个就是图片的id，然后会自动根据文件id得到图片，然后把图片放到指定id的图片标签中
-        function changeToop(fileid,imgid){
-            var file = Id(fileid);
-            if(file.value==''){
-                //设置默认图片
-                Id("myimg").src='';
-            }else{
-                preImg(fileid,imgid);
-            }
-        }
-        //获取input[file]图片的url Important
-        function getFileUrl(fileId) {
-            var url;
-            var file = Id(fileId);
-            var agent = navigator.userAgent;
-            if (agent.indexOf("MSIE")>=1) {
-                url = file.value;
-            } else if(agent.indexOf("Firefox")>0) {
-                url = window.URL.createObjectURL(file.files.item(0));
-            } else if(agent.indexOf("Chrome")>0) {
-                url = window.URL.createObjectURL(file.files.item(0));
-            }
-            var extIndex = file.value.lastIndexOf(".");
-            var ext = file.value.substring(extIndex,file.value.length).toUpperCase();
-            if (ext != ".PNG") {
-                alert("只允许上传PNG格式的图片！");
-                Id('upload_file').disabled = true;
-                return "";
-            }
-            Id('upload_file').disabled = false;
-            return url;
-        }
-        //读取图片后预览
-        function preImg(fileId,imgId) {
-            var imgPre =Id(imgId);
-            imgPre.src = getFileUrl(fileId);
-        }
-    </script>
 </head>
 
 <body class="nav-md">
@@ -137,10 +65,10 @@
                 <div class="clearfix"></div>
 
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>个人信息修改<small>${user.name}</small></h2>
+                                <h2>创建班级</h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
@@ -150,26 +78,20 @@
                             <div class="x_content">
 
                                 <!-- start form for validation -->
-                                <form:form commandName="user" action="modifyInformation" method="post"
-                                           id="modify_info_form" name="modify_info_form" onsubmit="return checkModifyInformationForm();">
-                                    <form:hidden path="userId" id="userId" name="userId" value="${user.userId}"/>
-                                    <form:hidden path="email" id="email" name="email" value="${user.email}"/>
-                                    <form:hidden path="password" id="password" name="password" value="${user.password}"/>
-                                    <form:hidden path="headImage" id="headImage" name="headImage" value="${user.headImage}"/>
-                                    <label for="name">姓名 <span class="required">*</span> :</label>
-                                    <form:input path="name" type="text" id="name" class="form-control" name="name" required="required"
-                                        onchange="checkName()"/>
+                                <form:form commandName="class" action="createClass" method="post"
+                                           id="create_class_form" name="create_class_form" onsubmit="return checkCreateClassForm();">
+                                    <form:hidden path="managerId" id="managerId" name="managerId"/>
+                                    <label for="className">班级名称 <span class="required">*</span> :</label>
+                                    <form:input path="className" type="text" id="className" class="form-control"
+                                                name="className" required="required" onchange="checkClassName()"/>
 
-                                    <label>性别 <span class="required">*</span> :</label>
-                                    <p>
-                                        男：
-                                        <form:radiobutton path="sex" class="flat" name="gender" id="genderM" value="男" required="required"/> 女:
-                                        <form:radiobutton path="sex" class="flat" name="gender" id="genderF" value="女" />
-                                    </p>
+                                    <label for="school">学校 <span class="required">*</span> :</label>
+                                    <form:input path="school" type="text" id="school" class="form-control"
+                                                name="school" required="required" onchange="checkSchool()"/>
 
-                                    <label for="phone">手机号 <span class="required">*</span> :</label>
-                                    <form:input path="phone" type="text" id="phone" class="form-control" name="phone"
-                                                data-parsley-trigger="change" required="required" onchange="checkPhone()"/>
+                                    <label for="gradeYear">年级 <span class="required">*</span> :</label>
+                                    <form:input path="gradeYear" type="text" id="gradeYear" class="form-control"
+                                                name="school" required="required" placeholder="e.g. 2017" onchange="checkYear()"/>
 
                                     <label for="province">省份 <span class="required">*</span> :</label>
                                     <form:select path="province" id="province" name="province" class="form-control"
@@ -192,10 +114,10 @@
                                         <form:option value="0">---请选择地区---</form:option>
                                     </form:select>
 
-                                    <label for="introduction">个人简介 :</label>
-                                    <form:textarea path="introduction" id="introduction" required="required"
-                                                   class="form-control" name="introduction" data-parsley-trigger="keyup"
-                                                   data-parsley-maxlength="100"
+                                    <label for="decription">个人简介 :</label>
+                                    <form:textarea path="decription" id="decription" required="required"
+                                                   class="form-control" name="decription" data-parsley-trigger="keyup"
+                                                   data-parsley-maxlength="200"
                                               data-parsley-validation-threshold="10"/>
 
                                     <br/>
@@ -205,54 +127,6 @@
                                             <p style="color: red">${error_message}</p>
                                     </c:if>
                                 </form:form>
-                                <!-- end form for validations -->
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <div class="x_panel">
-                            <div class="x_title">
-                                <h2>头像修改<small>${user.name}</small></h2>
-                                <ul class="nav navbar-right panel_toolbox">
-                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                    </li>
-                                </ul>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
-
-                                <!-- start form for validation -->
-                                <form action="modifyHeadImage" method="post"
-                                      enctype="multipart/form-data" class="form-horizontal">
-                                    <div class="ln_solid"></div>
-                                    <div class="form-group">
-                                        <div class="col-md-5 col-sm-5 col-xs-5">
-                                            <a class="file"><spring:message code="tip.upload"/>
-                                                <input type="file" name="image" id="file_selector" class="btn btn-round"
-                                                       placeholder="<spring:message code="tip.upload"/>" required="required"
-                                                       accept=".png" onchange="changeToop('file_selector', 'imagePreview');">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-1  col-sm-1 col-xs-1">
-                                            <input type="submit" value="<spring:message code="button.submit" />"
-                                                   class="btn btn-round btn-success" id="upload_file" onclick="return checkInput(this.form);">
-                                            <script>
-                                                function checkInput(form) {
-                                                    if (form.image.value == null || form.image.value == '') {
-                                                        alert("请选择一个文件");
-                                                        return false;
-                                                    }
-                                                    return true;
-                                                }
-                                            </script>
-                                        </div>
-                                    </div>
-                                    <div class="ln_solid"></div>
-                                    <div id="preview" class="col-sm-5 col-md-5 col-xs-5">
-                                        <img id="imagePreview" src="" alt="" class="img-circle img-responsive">
-                                    </div>
-                                </form>
                                 <!-- end form for validations -->
 
                             </div>
@@ -309,6 +183,30 @@
 <script src="../build/js/custom.min.js"></script>
 <script src="../js/validate.js"></script>
 <script type="text/javascript">
+    var provinceMap = {};
+    <c:forEach items="${provinces}" var="province">
+    provinceMap['${province.province}'] = '${province.provinceId}';
+    </c:forEach>
+
+    var cityMap = {};
+    var temp;
+    <c:forEach items="${cities}" var="cityList">
+    temp = {};
+    <c:forEach items="${cityList.value}" var="city">
+    temp['${city.cityId}'] = '${city.city}';
+    </c:forEach>
+    cityMap['${cityList.key}'] = temp;
+    </c:forEach>
+
+    var areaMap = {};
+    <c:forEach items="${areas}" var="areaList">
+    temp = {};
+    <c:forEach items="${areaList.value}" var="area">
+    temp['${area.areaId}'] = '${area.area}';
+    </c:forEach>
+    areaMap['${areaList.key}'] = temp;
+    </c:forEach>
+
     function change_city() {
         var cityList = cityMap[provinceMap[document.getElementById('province').value]];
         var citySelector = document.getElementById('city');

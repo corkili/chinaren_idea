@@ -66,10 +66,12 @@ public class UserController {
     }
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public ModelAndView modifyPassword(HttpSession session) {
+	public ModelAndView modifyPassword(HttpSession session,
+                                       @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
 		long userId = Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
 		User user = userService.getUserInformation(userId).getResult();
 		return new ModelAndView("main")
+                .addObject("display_name", displayName)
 				.addObject("user", user);
 	}
 
@@ -221,7 +223,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/modifyInformation", method = RequestMethod.GET)
-    public ModelAndView modifyInformation(HttpSession session) {
+    public ModelAndView modifyInformation(HttpSession session,
+                                          @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
 	    ModelAndView modelAndView = new ModelAndView();
 	    long userId = Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
 	    Result<User> result = userService.getUserInformation(userId);
@@ -233,11 +236,9 @@ public class UserController {
         }
         modelAndView.setViewName("modify_information");
 	    User user = result.getResult();
-	    user.setArea("0");
-	    user.setCity("0");
-	    user.setProvince("0");
 	    modelAndView.addObject("has_error", false)
                 .addObject("error_message", "")
+                .addObject("display_name", displayName)
                 .addObject("provinces", userService.getAddressContext().getProvinces())
                 .addObject("cities", userService.getAddressContext().getCities())
                 .addObject("areas", userService.getAddressContext().getAreas())

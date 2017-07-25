@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import chinaren.common.SessionContext;
-import chinaren.common.UserContext;
 import chinaren.dao.UserDao;
 import chinaren.util.EmailUtil;
 import chinaren.util.HashUtil;
@@ -151,6 +150,7 @@ public class UserServiceImpl implements UserService {
 			return new Result<Boolean>(false, "登录时发生未知错误，请重试！", false);
 		}
 		session.setAttribute(SessionContext.ATTR_USER_ID, String.valueOf(result.getResult().getUserId()));
+		session.setAttribute(SessionContext.ATTR_USER_NAME, result.getResult().getName());
 		sessionContext.sessionHandlerByCacheMap(session);
 		
 		logger.info(dateFormat.format(new Date()) + "login successful - user" + result.getResult().getUserId());

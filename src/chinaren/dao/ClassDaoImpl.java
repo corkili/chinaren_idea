@@ -64,21 +64,11 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 			message = successful ? "select<successful>" : "select<failed>";
 			if (successful) {
 				Result<List<Long>> result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_TRUE);
-				successful = result.isSuccessful();
 				message = message + " and " + result.getMessage();
-				if (successful) {
-					clazz.setClassmates(result.getResult());
-					result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
-					successful = result.isSuccessful();
-					message += " and " + result.getMessage();
-					if (successful) {
-						clazz.setNotApplys(result.getResult());
-					} else {
-						clazz = null;
-					}
-				} else {
-					clazz = null;
-				}
+				clazz.setClassmates(result.getResult());
+				result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
+				message += " and " + result.getMessage();
+				clazz.setNotApplys(result.getResult());
 			}
 		} catch (Exception e) {
 			successful = false;
@@ -110,21 +100,11 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 			message = successful ? "select<successful>" : "select<failed>";
 			if (successful) {
 				Result<List<Long>> result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_TRUE);
-				successful = result.isSuccessful();
 				message = message + " and " + result.getMessage();
-				if (successful) {
-					clazz.setClassmates(result.getResult());
-					result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
-					successful = result.isSuccessful();
-					message += " and " + result.getMessage();
-					if (successful) {
-						clazz.setNotApplys(result.getResult());
-					} else {
-						clazz = null;
-					}
-				} else {
-					clazz = null;
-				}
+				clazz.setClassmates(result.getResult());
+				result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
+				message += " and " + result.getMessage();
+				clazz.setNotApplys(result.getResult());
 			}
 		} catch (Exception e) {
 			successful = false;
@@ -151,22 +131,13 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 			classes = jdbcTemplate.query(sql, params, rowMapper);
 			classes = classes != null ? classes : new ArrayList<Class>();
 			successful = true;
-			message = successful ? "select<successful>" : "select<failed>";
+			message = "select<successful>";
 			for (Class clazz : classes) {
 				Result<List<Long>> result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_TRUE);
-				if (result.isSuccessful()) {
-					clazz.setClassmates(result.getResult());
-					result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
-					if (result.isSuccessful()) {
-						clazz.setNotApplys(result.getResult());
-					} else {
-						clazz = null;
-					}
-				} else {
-					clazz = null;
-				}
+				clazz.setClassmates(result.getResult());
+				result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
+				clazz.setNotApplys(result.getResult());
 			}
-			classes.removeAll(Collections.singleton(null));	// 移除null元素
 		} catch (DataAccessException e) {
 			successful = false;
 			message = "select<failed>";
@@ -193,22 +164,13 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 			classes = jdbcTemplate.query(sql, params, rowMapper);
 			classes = classes != null ? classes : new ArrayList<Class>();
 			successful = true;
-			message = successful ? "select<successful>" : "select<failed>";
+			message = "select<successful>";
 			for (Class clazz : classes) {
 				Result<List<Long>> result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_TRUE);
-				if (result.isSuccessful()) {
-					clazz.setClassmates(result.getResult());
-					result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
-					if (result.isSuccessful()) {
-						clazz.setNotApplys(result.getResult());
-					} else {
-						clazz = null;
-					}
-				} else {
-					clazz = null;
-				}
+				clazz.setClassmates(result.getResult());
+				result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
+				clazz.setNotApplys(result.getResult());
 			}
-			classes.removeAll(Collections.singleton(null));	// 移除null元素
 		} catch (DataAccessException e) {
 			successful = false;
 			message = "select<failed>";
@@ -235,22 +197,13 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 			classes = jdbcTemplate.query(sql, params, rowMapper);
 			classes = classes != null ? classes : new ArrayList<Class>();
 			successful = true;
-			message = successful ? "select<successful>" : "select<failed>";
+			message = "select<successful>";
 			for (Class clazz : classes) {
 				Result<List<Long>> result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_TRUE);
-				if (result.isSuccessful()) {
-					clazz.setClassmates(result.getResult());
-					result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
-					if (result.isSuccessful()) {
-						clazz.setNotApplys(result.getResult());
-					} else {
-						clazz = null;
-					}
-				} else {
-					clazz = null;
-				}
+				clazz.setClassmates(result.getResult());
+				result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
+				clazz.setNotApplys(result.getResult());
 			}
-			classes.removeAll(Collections.singleton(null));	// 移除null元素
 		} catch (DataAccessException e) {
 			successful = false;
 			message = "select<failed>";
@@ -278,22 +231,13 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 			classes = jdbcTemplate.query(sql, params, rowMapper);
 			classes = classes != null ? classes : new ArrayList<Class>();
 			successful = true;
-			message = successful ? "select<successful>" : "select<failed>";
+			message = "select<successful>";
 			for (Class clazz : classes) {
 				Result<List<Long>> result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_TRUE);
-				if (result.isSuccessful()) {
-					clazz.setClassmates(result.getResult());
-					result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
-					if (result.isSuccessful()) {
-						clazz.setNotApplys(result.getResult());
-					} else {
-						clazz = null;
-					}
-				} else {
-					clazz = null;
-				}
+				clazz.setClassmates(result.getResult());
+				result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
+				clazz.setNotApplys(result.getResult());
 			}
-			classes.removeAll(Collections.singleton(null));	// 移除null元素
 		} catch (DataAccessException e) {
 			successful = false;
 			message = "select<failed>";
@@ -321,22 +265,13 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 			classes = jdbcTemplate.query(sql, params, rowMapper);
 			classes = classes != null ? classes : new ArrayList<Class>();
 			successful = true;
-			message = successful ? "select<successful>" : "select<failed>";
+			message = "select<successful>";
 			for (Class clazz : classes) {
 				Result<List<Long>> result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_TRUE);
-				if (result.isSuccessful()) {
-					clazz.setClassmates(result.getResult());
-					result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
-					if (result.isSuccessful()) {
-						clazz.setNotApplys(result.getResult());
-					} else {
-						clazz = null;
-					}
-				} else {
-					clazz = null;
-				}
+				clazz.setClassmates(result.getResult());
+				result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
+				clazz.setNotApplys(result.getResult());
 			}
-			classes.removeAll(Collections.singleton(null));	// 移除null元素
 		} catch (DataAccessException e) {
 			successful = false;
 			message = "select<failed>";
@@ -364,22 +299,13 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 			classes = jdbcTemplate.query(sql, params, rowMapper);
 			classes = classes != null ? classes : new ArrayList<Class>();
 			successful = true;
-			message = successful ? "select<successful>" : "select<failed>";
+			message = "select<successful>";
 			for (Class clazz : classes) {
 				Result<List<Long>> result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_TRUE);
-				if (result.isSuccessful()) {
-					clazz.setClassmates(result.getResult());
-					result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
-					if (result.isSuccessful()) {
-						clazz.setNotApplys(result.getResult());
-					} else {
-						clazz = null;
-					}
-				} else {
-					clazz = null;
-				}
+				clazz.setClassmates(result.getResult());
+				result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
+				clazz.setNotApplys(result.getResult());
 			}
-			classes.removeAll(Collections.singleton(null));	// 移除null元素
 		} catch (DataAccessException e) {
 			successful = false;
 			message = "select<failed>";
@@ -409,22 +335,13 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 			classes = jdbcTemplate.query(sql, params, rowMapper);
 			classes = classes != null ? classes : new ArrayList<Class>();
 			successful = true;
-			message = successful ? "select<successful>" : "select<failed>";
+			message = "select<successful>";
 			for (Class clazz : classes) {
 				Result<List<Long>> result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_TRUE);
-				if (result.isSuccessful()) {
-					clazz.setClassmates(result.getResult());
-					result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
-					if (result.isSuccessful()) {
-						clazz.setNotApplys(result.getResult());
-					} else {
-						clazz = null;
-					}
-				} else {
-					clazz = null;
-				}
+				clazz.setClassmates(result.getResult());
+				result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
+				clazz.setNotApplys(result.getResult());
 			}
-			classes.removeAll(Collections.singleton(null));	// 移除null元素
 		} catch (DataAccessException e) {
 			successful = false;
 			message = "select<failed>";
@@ -455,22 +372,13 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 			classes = jdbcTemplate.query(sql, params, rowMapper);
 			classes = classes != null ? classes : new ArrayList<Class>();
 			successful = true;
-			message = successful ? "select<successful>" : "select<failed>";
+			message = "select<successful>";
 			for (Class clazz : classes) {
 				Result<List<Long>> result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_TRUE);
-				if (result.isSuccessful()) {
-					clazz.setClassmates(result.getResult());
-					result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
-					if (result.isSuccessful()) {
-						clazz.setNotApplys(result.getResult());
-					} else {
-						clazz = null;
-					}
-				} else {
-					clazz = null;
-				}
+				clazz.setClassmates(result.getResult());
+				result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
+				clazz.setNotApplys(result.getResult());
 			}
-			classes.removeAll(Collections.singleton(null));	// 移除null元素
 		} catch (DataAccessException e) {
 			successful = false;
 			message = "select<failed>";
@@ -504,14 +412,12 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 				Result<Class> result = selectClass(clazz.getProvince(), 
 						clazz.getCity(), clazz.getArea(), clazz.getSchool(),
 						clazz.getGradeYear(), clazz.getClassName());
-				successful = result.isSuccessful();
 				message = message + " and " + result.getMessage();
 				newClass = result.getResult();
 				// 添加关系
-				if (attendDao.insertAttend(newClass.getManagerId(), newClass.getClassId()).isSuccessful()) {
-					result = selectClass(clazz.getProvince(), 
-							clazz.getCity(), clazz.getArea(), clazz.getSchool(),
-							clazz.getGradeYear(), clazz.getClassName());
+				if (attendDao.insertAttend(newClass.getManagerId(), newClass.getClassId()).isSuccessful()
+						&& attendDao.updateAttendStatus(newClass.getManagerId(), newClass.getClassId()).isSuccessful()) {
+					result = selectClassByClassId(newClass.getClassId());
 					successful = result.isSuccessful();
 					message += " and insert<successful>";
 					newClass = result.getResult();
@@ -535,7 +441,7 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 	 */
 	@Override
 	public Result<Boolean> deleteClass(long classId) {
-		logger.info(dateFormat.format(new Date()) + "action: delete class by message id");
+		logger.info(dateFormat.format(new Date()) + "action: delete class by class id");
 		String sql = "delete from " + TABLE_CLASS + " where " + COL_CLASS_ID + "=?";
 		logger.info(dateFormat.format(new Date()) + "sql: " + sql);
 		boolean successful = false;

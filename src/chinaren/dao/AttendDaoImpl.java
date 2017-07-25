@@ -39,10 +39,10 @@ public class AttendDaoImpl extends BaseDao implements AttendDao {
 	}
 
 	/**
-	 * @see chinaren.dao.AttendDao#selectUserIdByClassId(long, char)
+	 * @see chinaren.dao.AttendDao#selectUserIdByClassId(long, String)
 	 */
 	@Override
-	public Result<List<Long>> selectUserIdByClassId(long classId, char status) {
+	public Result<List<Long>> selectUserIdByClassId(long classId, String status) {
 		logger.info(dateFormat.format(new Date()) + "action: select user ids by class id");
 		String sql = "select " + COL_USER_ID + " from " + TABLE_ATTEND + " where "
 				+ COL_CLASS_ID + "=? and " + COL_STATUS + "=?";
@@ -51,7 +51,7 @@ public class AttendDaoImpl extends BaseDao implements AttendDao {
 		boolean successful = false;
 		String message = "";
 		try {
-			Object[] params = { classId };
+			Object[] params = { classId, status };
 			userIdList = jdbcTemplate.queryForList(sql, params, Long.class);
 			userIdList = userIdList != null ? userIdList : new ArrayList<Long>();
 			successful = true;
@@ -66,10 +66,10 @@ public class AttendDaoImpl extends BaseDao implements AttendDao {
 	}
 
 	/**
-	 * @see chinaren.dao.AttendDao#selectClassIdByUserId(long, char)
+	 * @see chinaren.dao.AttendDao#selectClassIdByUserId(long, String)
 	 */
 	@Override
-	public Result<List<Long>> selectClassIdByUserId(long userId, char status) {
+	public Result<List<Long>> selectClassIdByUserId(long userId, String status) {
 		logger.info(dateFormat.format(new Date()) + "action: select class ids by user id");
 		String sql = "select " + COL_CLASS_ID + " from " + TABLE_ATTEND + " where "
 				+ COL_USER_ID + "=? and " + COL_STATUS + "=?";
@@ -78,7 +78,7 @@ public class AttendDaoImpl extends BaseDao implements AttendDao {
 		boolean successful = false;
 		String message = "";
 		try {
-			Object[] params = { userId };
+			Object[] params = { userId, status };
 			userIdList = jdbcTemplate.queryForList(sql, params, Long.class);
 			userIdList = userIdList != null ? userIdList : new ArrayList<Long>();
 			successful = true;
@@ -109,7 +109,7 @@ public class AttendDaoImpl extends BaseDao implements AttendDao {
 			message = successful ? "insert<successful>" : "insert<failed>";
 		} catch (Exception e) {
 			successful = false;
-			message = "insert<failed>";
+			message = "insert<exception>";
 		}
 		logger.info(dateFormat.format(new Date()) + "result: " + message);
 		return new Result<Boolean>(successful, message, successful);
@@ -121,7 +121,7 @@ public class AttendDaoImpl extends BaseDao implements AttendDao {
 	@Override
 	public Result<Boolean> deleteAttend(long userId, long classId) {
 		logger.info(dateFormat.format(new Date()) + "action: delete a attend");
-		String sql = "delete " + TABLE_ATTEND + " where " + COL_USER_ID 
+		String sql = "delete from " + TABLE_ATTEND + " where " + COL_USER_ID
 				+ "=? and " + COL_CLASS_ID + "=?";
 		logger.info(dateFormat.format(new Date()) + "sql: " + sql);
 		boolean successful = false;
@@ -144,7 +144,7 @@ public class AttendDaoImpl extends BaseDao implements AttendDao {
 	@Override
 	public Result<Boolean> deleteAttendByClassId(long classId) {
 		logger.info(dateFormat.format(new Date()) + "action: delete attends for a class");
-		String sql = "delete " + TABLE_ATTEND + " where " + COL_CLASS_ID + "=?";
+		String sql = "delete from " + TABLE_ATTEND + " where " + COL_CLASS_ID + "=?";
 		logger.info(dateFormat.format(new Date()) + "sql: " + sql);
 		boolean successful = false;
 		String message = "";
