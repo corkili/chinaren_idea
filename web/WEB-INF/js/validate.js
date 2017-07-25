@@ -50,6 +50,14 @@ function checkExitClassForm(form) {
     return true;
 }
 
+function checkRemoveClassmate(form) {
+    if (form.user_id.value == form.manager_id.value) {
+        alert("班级管理者不能删除自己！");
+        return false;
+    }
+    return true;
+}
+
 function checkEmail() {
     var reg = /^\s*\w+(?:\.{0,1}[\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\.[a-zA-Z]+\s*$/;
     var emailStr = $$('email').value;

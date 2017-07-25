@@ -60,7 +60,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>我的班级</h3>
+                        <h3>管理班级</h3>
                     </div>
                 </div>
 
@@ -86,17 +86,17 @@
                                         <tr class="headings">
                                             <th class="column-title">班级ID</th>
                                             <th class="column-title">班级名称</th>
-                                            <th class="column-title">班长</th>
                                             <th class="column-title">学校</th>
                                             <th class="column-title">年级</th>
                                             <th class="column-title">地址</th>
-                                            <th class="column-title">状态</th>
-                                            <th class="column-title">班级介绍</th>
+                                            <th class="column-title">班级人数</th>
+                                            <th class="column-title">待审核人数</th>
+                                            <th class="column-title">成员管理</th>
                                             <th class="column-title no-link last"><span class="nobr">操作</span></th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach items="${myClasses}" varStatus="status">
+                                        <c:forEach items="${manageClasses}" varStatus="status">
                                             <c:choose>
                                                 <c:when test="${status.index % 2 == 0}">
                                                     <tr class="even pointer">
@@ -105,63 +105,30 @@
                                                     <tr class="odd pointer">
                                                 </c:otherwise>
                                             </c:choose>
-                                            <td class=" ">${myClasses[status.index].classId}</td>
-                                            <td class=" ">${myClasses[status.index].className}</td>
-                                            <td class=" ">${myClasses[status.index].managerName}</td>
-                                            <td class=" ">${myClasses[status.index].school}</td>
-                                            <td class=" ">${myClasses[status.index].gradeYear}</td>
-                                            <td class=" ">${myClasses[status.index].province}&nbsp;
-                                                    ${myClasses[status.index].city}&nbsp;${myClasses[status.index].area}</td>
-                                            <td class=" "><span style="color: #008800;">已加入</span></td>
+                                            <td class=" ">${manageClasses[status.index].classId}</td>
+                                            <td class=" ">${manageClasses[status.index].className}</td>
+                                            <td class=" ">${manageClasses[status.index].school}</td>
+                                            <td class=" ">${manageClasses[status.index].gradeYear}</td>
+                                            <td class=" ">${manageClasses[status.index].province}&nbsp;
+                                                    ${manageClasses[status.index].city}&nbsp;${manageClasses[status.index].area}</td>
+                                            <td class=" ">${manageClasses[status.index].classmates.size()}</td>
+                                            <td class=" ">${manageClasses[status.index].notApplys.size()}</td>
                                             <td class=" ">
-                                                <button type="button" class="btn btn-round btn-info"
-                                                        onclick="sAlert('${myClasses[status.index].className}-班级介绍','${myClasses[status.index].description}')">
-                                                    查看
-                                                </button>
-                                            </td>
-                                            <td class=" last">
-                                                <form action="exitClass" method="post" onsubmit="return checkExitClassForm(this);">
+                                                <form action="manageClass" method="post">
                                                     <input type="hidden" name="user_id" value="${user_id}">
-                                                    <input type="hidden" name="manager_id" value="${myClasses[status.index].managerId}">
-                                                    <input type="hidden" name="class_id" value="${myClasses[status.index].classId}">
-                                                    <input type="submit" value="退出班级"
-                                                           onclick="return confirm('确认退出班级-${myClasses[status.index].className}？');"
-                                                           class="btn btn-round btn-danger">
+                                                    <input type="hidden" name="manager_id" value="${manageClasses[status.index].managerId}">
+                                                    <input type="hidden" name="class_id" value="${manageClasses[status.index].classId}">
+                                                    <input type="submit" value="成员管理"
+                                                           class="btn btn-round btn-primary">
                                                 </form>
                                             </td>
-                                            </tr>
-                                        </c:forEach>
-                                        <c:forEach items="${applyClasses}" varStatus="status">
-                                            <c:choose>
-                                                <c:when test="${(status.index + myClasses.size()) % 2 == 0}">
-                                                    <tr class="even pointer">
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <tr class="odd pointer">
-                                                </c:otherwise>
-                                            </c:choose>
-                                            <td class=" ">${applyClasses[status.index].classId}</td>
-                                            <td class=" ">${applyClasses[status.index].className}</td>
-                                            <td class=" ">${applyClasses[status.index].managerName}</td>
-                                            <td class=" ">${applyClasses[status.index].school}</td>
-                                            <td class=" ">${applyClasses[status.index].gradeYear}</td>
-                                            <td class=" ">${applyClasses[status.index].province}&nbsp;
-                                                    ${applyClasses[status.index].city}&nbsp;${applyClasses[status.index].area}</td>
-                                            <td class=" "><span style="color: #FF1800;">待审核</span></td>
-                                            <td class=" ">
-                                                <button type="button" class="btn btn-round btn-info"
-                                                        onclick="sAlert('${myClasses[status.index].className}-班级介绍','${myClasses[status.index].description}')">
-                                                    查看
-                                                </button>
-                                            </td>
                                             <td class=" last">
-                                                <button type="button" class="btn btn-round btn-info">Info</button>
-                                                <form action="exitClass" method="post" onsubmit="return checkExitClassForm(this);">
+                                                <form action="removeClass" method="post">
                                                     <input type="hidden" name="user_id" value="${user_id}">
-                                                    <input type="hidden" name="manager_id" value="${myClasses[status.index].managerId}">
-                                                    <input type="hidden" name="class_id" value="${myClasses[status.index].classId}">
-                                                    <input type="submit" value="取消申请"
-                                                           onclick="return confirm('确认取消申请？');"
+                                                    <input type="hidden" name="manager_id" value="${manageClasses[status.index].managerId}">
+                                                    <input type="hidden" name="class_id" value="${manageClasses[status.index].classId}">
+                                                    <input type="submit" value="删除班级"
+                                                           onclick="return confirm('确认删除班级-${manageClasses[status.index].className}？');"
                                                            class="btn btn-round btn-danger">
                                                 </form>
                                             </td>

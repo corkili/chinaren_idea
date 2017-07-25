@@ -472,8 +472,14 @@ public class UserServiceImpl implements UserService {
 		 * @param userId 待更新的用户ID集
 		 */
 		public void update(List<Long> userId) {
-			if (userId != null) {
-				update((Long[])userId.toArray());
+			for(long id : userId) {
+				if (loginUsers.containsKey(id)) {
+					Result<User> result = userDao.selectUserByUserId(id);
+					if (result.isSuccessful()) {
+						loginUsers.remove(id);
+						loginUsers.put(result.getResult().getUserId(), result.getResult());
+					}
+				}
 			}
 		}
 

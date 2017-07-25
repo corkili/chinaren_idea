@@ -397,7 +397,7 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 		String sql = "insert into " + TABLE_CLASS + " ("
 				+ COL_SCHOOL + "," + COL_CLASS_NAME + "," + COL_GRADE_YEAR + ","
 				+ COL_DESCRIPTION + "," + COL_PROVINCE + "," + COL_CITY + ","
-				+ COL_AREA + "," + COL_MANAGER_ID + ") values(?,?,?,?,?,?,?,?)";
+				+ COL_AREA + "," + COL_MANAGER_ID + "," + COL_MANAGER_NAME + ") values(?,?,?,?,?,?,?,?,?)";
 		logger.info(dateFormat.format(new Date()) + "sql: " + sql);
 		Class newClass = null;
 		boolean successful = false;
@@ -405,7 +405,7 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 		try {
 			Object[] params = { clazz.getSchool(), clazz.getClassName(), clazz.getGradeYear(),
 					clazz.getDescription(), clazz.getProvince(), clazz.getCity(),
-					clazz.getArea(), clazz.getManagerId()};
+					clazz.getArea(), clazz.getManagerId(), clazz.getManagerName()};
 			successful = jdbcTemplate.update(sql, params) == 1;
 			message = successful ? "insert<successful>" : "insert<failed>";
 			if (successful) {
@@ -430,7 +430,7 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 			}
 		} catch (Exception e) {
 			successful = false;
-			message = "insert<failed>";
+			message = "insert<exception>";
 		}
 		logger.info(dateFormat.format(new Date()) + "result: " + message);
 		return new Result<Class>(successful, message, newClass);

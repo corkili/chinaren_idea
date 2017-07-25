@@ -3,6 +3,7 @@ package chinaren.action;
 import chinaren.common.SessionContext;
 import chinaren.model.Class;
 import chinaren.model.Result;
+import chinaren.model.User;
 import chinaren.service.ClassService;
 import chinaren.service.UserService;
 import org.apache.log4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,15 +45,16 @@ public class ClassController {
                 .addObject("provinces", userService.getAddressContext().getProvinces())
                 .addObject("cities", userService.getAddressContext().getCities())
                 .addObject("areas", userService.getAddressContext().getAreas())
-                .addObject("class", clazz);
+                .addObject("clazz", clazz);
         return modelAndView;
     }
 
     @RequestMapping(value = "/createClass", method = RequestMethod.POST)
-    public ModelAndView createClass(HttpSession session, @ModelAttribute("class") Class clazz,
+    public ModelAndView createClass(HttpSession session, @ModelAttribute("clazz") Class clazz,
                                     @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
         ModelAndView modelAndView = new ModelAndView();
         clazz.setManagerId(Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString()));
+        clazz.setManagerName(displayName);
         Result<Boolean> result = classService.createClass(clazz);
         if (!result.isSuccessful()) {
             modelAndView.setViewName("create_class");
@@ -61,10 +64,10 @@ public class ClassController {
                     .addObject("provinces", userService.getAddressContext().getProvinces())
                     .addObject("cities", userService.getAddressContext().getCities())
                     .addObject("areas", userService.getAddressContext().getAreas())
-                    .addObject("class", clazz);
+                    .addObject("clazz", clazz);
             return modelAndView;
         }
-        modelAndView.setViewName("redirect:/main");
+        modelAndView.setViewName("redirect:/manageClass");
         return modelAndView;
     }
 
@@ -85,11 +88,100 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/exitClass", method = RequestMethod.POST)
-    public ModelAndView exitClassList(HttpSession session,
-                                      @RequestParam("class_id") long classId,
-                                      @SessionAttribute(SessionContext.ATTR_USER_ID) long userId) {
+    public ModelAndView exitClass(@RequestParam("class_id") long classId, HttpSession session) {
         ModelAndView modelAndView = new ModelAndView("redirect:/myClass");
+        long userId = Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
         classService.exitClass(userId, classId);
+        return  modelAndView;
+    }
+
+    @RequestMapping(value = "/manageClass", method = RequestMethod.GET)
+    public ModelAndView getManageClassList(HttpSession session,
+                                       @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView("manage_class");
+        long userId = Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
+        Result<List<Class>> manageClassesResult = classService.getManageClasses(userId);
+        modelAndView.addObject("has_error", false)
+                .addObject("error_message", "")
+                .addObject("display_name", displayName)
+                .addObject("user_id", userId)
+                .addObject("manageClasses", manageClassesResult.getResult());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/manageClass", method = RequestMethod.POST)
+    public ModelAndView getManageClassmateList(HttpSession session,
+                                               @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName,
+                                               @RequestParam("class_id") long classId) {
+        ModelAndView modelAndView = new ModelAndView("manage_classmates");
+        long userId = Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
+        modelAndView.addObject("has_error", false)
+                .addObject("error_message", "")
+                .addObject("display_name", displayName)
+                .addObject("user_id", userId)
+                .addObject("clazz", classService.getClassInformation(classId).getResult())
+                .addObject("classmates", classService.getUsersByClassId(classId, true).getResult())
+                .addObject("applyUsers", classService.getUsersByClassId(classId, false).getResult());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/removeClass", method = RequestMethod.POST)
+    public ModelAndView removeClass(HttpSession session,
+                                    @RequestParam("class_id") long classId) {
+        ModelAndView modelAndView = new ModelAndView("redirect:/manageClass");
+        long userId = Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
+        logger.info(dateFormat.format(new Date()) + classService.removeClass(userId, classId).getMessage());
+        return  modelAndView;
+    }
+
+    @RequestMapping(value = "/removeClassmate", method = RequestMethod.POST)
+    public ModelAndView removeClassmate(@RequestParam("class_id") long classId,
+                                      @RequestParam("user_id") long userId, HttpSession session,
+                                      @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView("manage_classmates");
+        long managerId = Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
+        classService.removeClassmate(managerId, userId, classId);
+        modelAndView.addObject("has_error", false)
+                .addObject("error_message", "")
+                .addObject("display_name", displayName)
+                .addObject("user_id", managerId)
+                .addObject("clazz", classService.getClassInformation(classId).getResult())
+                .addObject("classmates", classService.getUsersByClassId(classId, true).getResult())
+                .addObject("applyUsers", classService.getUsersByClassId(classId, false).getResult());
+        return  modelAndView;
+    }
+
+    @RequestMapping(value = "/refuseJoin", method = RequestMethod.POST)
+    public ModelAndView refuseJoining(@RequestParam("class_id") long classId,
+                                      @RequestParam("user_id") long userId, HttpSession session,
+                                      @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView("manage_classmates");
+        long managerId = Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
+        classService.refuseJoinClass(managerId, userId, classId);
+        modelAndView.addObject("has_error", false)
+                .addObject("error_message", "")
+                .addObject("display_name", displayName)
+                .addObject("user_id", managerId)
+                .addObject("clazz", classService.getClassInformation(classId).getResult())
+                .addObject("classmates", classService.getUsersByClassId(classId, true).getResult())
+                .addObject("applyUsers", classService.getUsersByClassId(classId, false).getResult());
+        return  modelAndView;
+    }
+
+    @RequestMapping(value = "/allowJoin", method = RequestMethod.POST)
+    public ModelAndView allowJoining(@RequestParam("class_id") long classId,
+                                      @RequestParam("user_id") long userId, HttpSession session,
+                                      @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView("manage_classmates");
+        long managerId = Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
+        classService.allowJoinClass(managerId, userId, classId);
+        modelAndView.addObject("has_error", false)
+                .addObject("error_message", "")
+                .addObject("display_name", displayName)
+                .addObject("user_id", managerId)
+                .addObject("clazz", classService.getClassInformation(classId).getResult())
+                .addObject("classmates", classService.getUsersByClassId(classId, true).getResult())
+                .addObject("applyUsers", classService.getUsersByClassId(classId, false).getResult());
         return  modelAndView;
     }
 }

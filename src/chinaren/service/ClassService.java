@@ -4,6 +4,7 @@ import java.util.List;
 
 import chinaren.model.Class;
 import chinaren.model.Result;
+import chinaren.model.User;
 
 /**
  * 班级相关数据处理，服务层接口
@@ -82,7 +83,16 @@ public interface ClassService {
 	 * @return 退出班级操作结果
 	 */
 	public Result<Boolean> exitClass(long userId, long classId);
-	
+
+	/**
+	 * 获取班级成员服务
+	 * @author 李浩然
+	 * @param classId 班级的ID
+	 * @param status 成员状态
+	 * @return 班级成员列表
+	 */
+	public Result<List<User>> getUsersByClassId(long classId, boolean status);
+
 	/**
 	 * 批准加入班级服务
 	 * @author 李浩然

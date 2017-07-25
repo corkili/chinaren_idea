@@ -78,9 +78,10 @@
                             <div class="x_content">
 
                                 <!-- start form for validation -->
-                                <form:form commandName="class" action="createClass" method="post"
+                                <form:form commandName="clazz" action="createClass" method="post"
                                            id="create_class_form" name="create_class_form" onsubmit="return checkCreateClassForm();">
                                     <form:hidden path="managerId" id="managerId" name="managerId"/>
+                                    <form:hidden path="managerName" id="managerName" name="managerName"/>
                                     <label for="className">班级名称 <span class="required">*</span> :</label>
                                     <form:input path="className" type="text" id="className" class="form-control"
                                                 name="className" required="required" onchange="checkClassName()"/>
@@ -115,7 +116,7 @@
                                     </form:select>
 
                                     <label for="decription">班级简介 :</label>
-                                    <form:textarea path="decription" id="decription" required="required"
+                                    <form:textarea path="description" id="decription" required="required"
                                                    class="form-control" name="decription" data-parsley-trigger="keyup"
                                                    data-parsley-maxlength="200"
                                               data-parsley-validation-threshold="10"/>

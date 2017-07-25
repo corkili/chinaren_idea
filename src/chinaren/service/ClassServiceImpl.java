@@ -2,9 +2,11 @@ package chinaren.service;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import chinaren.model.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -221,6 +223,20 @@ public class ClassServiceImpl implements ClassService {
 		return new Result<Boolean>(true, "退出班级成功", true);
 	}
 
+	@Override
+	public Result<List<User>> getUsersByClassId(long classId, boolean status) {
+		Result<Class> classResult = classDao.selectClassByClassId(classId);
+		if (!classResult.isSuccessful()) {
+			return new Result<>(false, "数据库错误，请重试！", new ArrayList<>());
+		} else {
+			List<User> userList = new ArrayList<>();
+			for (long userId : status ? classResult.getResult().getClassmates() : classResult.getResult().getNotApplys()) {
+				userList.add(userService.getUserInformation(userId).getResult());
+			}
+			return new Result<>(true, "获取成功！", userList);
+		}
+	}
+
 	/**
 	 * @see chinaren.service.ClassService#allowJoinClass(long, long, long)
 	 */
@@ -321,7 +337,7 @@ public class ClassServiceImpl implements ClassService {
 					+ " remove class " + classId);
 			return new Result<Boolean>(false, "不存在相应的班级", false);
 		}
-		if (result.getResult().isManager(managerId)) {
+		if (!result.getResult().isManager(managerId)) {
 			logger.info(dateFormat.format(new Date()) + "remove class: failed - manager " + managerId 
 					+ " remove class " + classId);
 			return new Result<Boolean>(false, "非班级管理员不能进行此操作", false);
