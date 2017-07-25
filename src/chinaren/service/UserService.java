@@ -110,6 +110,8 @@ public interface UserService {
 	public Result<Boolean> verifyEmail(String email, String code);
 
 	public UserServiceImpl.AddressContext getAddressContext();
+
+	public UserServiceImpl.UserContext getUserContext();
 }
 
 

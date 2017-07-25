@@ -62,7 +62,7 @@
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-9">
                             <form:input path="email" id="email" name="email" cssErrorClass="error" onchange="checkEmail()"
-                                        type="text" cssClass="form-control" placeholder="Email" required="required"/>
+                                        type="email" cssClass="form-control" placeholder="Email" required="required"/>
                         </div>
                     </div>
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
@@ -312,7 +312,6 @@
             i++;
         }
     }
-    var wait = 60;
 
 </script>
 

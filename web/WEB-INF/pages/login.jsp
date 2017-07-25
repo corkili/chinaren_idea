@@ -46,7 +46,7 @@
                     <form:hidden path="userId" value="0" userId="userId" name="userId"/>
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
                         <form:input path="email" id="email" name="email"
-                                    type="text" cssClass="form-control" placeholder="Email" required="required"/>
+                                    type="email" cssClass="form-control" placeholder="Email" required="required"/>
                     </div>
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
                         <form:input path="password" id="password" name="password"

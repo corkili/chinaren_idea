@@ -24,6 +24,15 @@ function checkResetPasswordForm() {
     }
 }
 
+function checkModifyInformationForm() {
+    if (checkName() && checkPhone() && checkProvince() && checkCity() && checkArea()) {
+        return true;
+    } else {
+        alert("某些信息输入不正确，请检查红字部分！");
+        return false;
+    }
+}
+
 function checkEmail() {
     var reg = /^\s*\w+(?:\.{0,1}[\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\.[a-zA-Z]+\s*$/;
     var emailStr = $$('email').value;

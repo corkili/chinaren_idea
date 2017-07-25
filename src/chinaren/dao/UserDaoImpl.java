@@ -227,7 +227,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		String sql = "update " + TABLE_USER + " set " + COL_NAME + "=?, "
 				+ COL_SEX + "=?, " + COL_PHONE + "=?, " + COL_INTRODUCTION
 				+ "=?, " + COL_PROVINCE + "=?, " + COL_CITY + "=?, "
-				+ COL_AREA + "=? where" + COL_USER_ID + "=?";
+				+ COL_AREA + "=? where " + COL_USER_ID + "=?";
 		logger.info(dateFormat.format(new Date()) + "sql: " + sql);
 		User newUser = null;
 		boolean successful = false;

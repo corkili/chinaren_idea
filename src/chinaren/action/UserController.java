@@ -2,7 +2,6 @@ package chinaren.action;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -10,12 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import chinaren.common.AddressContext;
 import chinaren.model.Result;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import chinaren.common.SessionContext;
@@ -115,7 +114,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "register", method = RequestMethod.GET)
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView register(@ModelAttribute("user") User user) {
         logger.info(dateFormat.format(new Date()) + "register - get");
 	    return new ModelAndView("register")
@@ -129,7 +128,7 @@ public class UserController {
                 .addObject("error_message", "");
     }
 
-    @RequestMapping(value = "register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView register(@ModelAttribute("user") User user, HttpSession session,
                                  @RequestParam("captcha") String captcha, @RequestParam("code") String code) {
         logger.info(dateFormat.format(new Date()) + "register - post");
@@ -173,7 +172,7 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "resetPWD", method = RequestMethod.GET)
+    @RequestMapping(value = "/resetPWD", method = RequestMethod.GET)
     public ModelAndView resetPassword(HttpSession session) {
         logger.info(dateFormat.format(new Date()) + "reset password - get");
         if (session.getAttribute(SessionContext.ATTR_USER_ID) != null) {
@@ -187,7 +186,7 @@ public class UserController {
                 .addObject("password", "");
     }
 
-    @RequestMapping(value = "resetPWD", method = RequestMethod.POST)
+    @RequestMapping(value = "/resetPWD", method = RequestMethod.POST)
     public ModelAndView resetPassword(@RequestParam("email") String email,
                                       @RequestParam("code") String code,
                                       @RequestParam("password") String password,
@@ -220,6 +219,64 @@ public class UserController {
             return modelAndView;
         }
     }
+
+    @RequestMapping(value = "/modifyInformation", method = RequestMethod.GET)
+    public ModelAndView modifyInformation(HttpSession session) {
+	    ModelAndView modelAndView = new ModelAndView();
+	    long userId = Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
+	    Result<User> result = userService.getUserInformation(userId);
+	    if (!result.isSuccessful()) {
+	        modelAndView.setViewName("error_page");
+	        modelAndView.addObject("has_error", true)
+                    .addObject("error_message", "发生未知错误，请重试或重新登录！");
+	        return modelAndView;
+        }
+        modelAndView.setViewName("modify_information");
+	    User user = result.getResult();
+	    user.setArea("0");
+	    user.setCity("0");
+	    user.setProvince("0");
+	    modelAndView.addObject("has_error", false)
+                .addObject("error_message", "")
+                .addObject("provinces", userService.getAddressContext().getProvinces())
+                .addObject("cities", userService.getAddressContext().getCities())
+                .addObject("areas", userService.getAddressContext().getAreas())
+                .addObject("user", user);
+	    return modelAndView;
+    }
+
+    @RequestMapping(value = "/modifyInformation", method = RequestMethod.POST)
+    public ModelAndView modifyInformation(@ModelAttribute("user") User user) {
+        ModelAndView modelAndView = new ModelAndView();
+        Result<Boolean> result = userService.modifyUserInformation(user);
+        if (!result.isSuccessful()) {
+            modelAndView.setViewName("error_page");
+            modelAndView.addObject("has_error", true)
+                    .addObject("error_message", result.getMessage());
+            return modelAndView;
+        }
+        modelAndView.setViewName("redirect:/main");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/modifyHeadImage", method = RequestMethod.POST)
+    public ModelAndView modifyHeadImage(HttpSession session,
+            @RequestParam("image") MultipartFile file) {
+        ModelAndView modelAndView = new ModelAndView();
+        long userId = Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
+        Result<Boolean> result = userService.modifyHeadImage(session.getServletContext(), userId, file);
+        if (!result.isSuccessful()) {
+            modelAndView.setViewName("error_page");
+            modelAndView.addObject("has_error", true)
+                    .addObject("error_message", result.getMessage());
+            return modelAndView;
+        }
+        modelAndView.setViewName("redirect:/main");
+        return modelAndView;
+    }
+
+
+
 }
 
 
