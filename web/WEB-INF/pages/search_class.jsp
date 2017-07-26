@@ -174,8 +174,11 @@
 
                             <div class="x_content">
                                 <div class="table-responsive">
-                                    <button id="searchBtn" class="btn btn-sm btn-success btn-block col-md-4" type="button" onclick="displaySearchForm()">搜索班级</button>
-                                    <br/>
+                                    <div>
+                                        <button id="searchBtn" class="btn btn-success" style="margin-right: 5px;" type="button"
+                                                onclick="displaySearchForm()">搜索班级</button>
+                                        <br/>
+                                    </div>
                                     <table id="datatable" class="table table-striped jambo_table" style="white-space: nowrap;">
                                         <thead>
                                         <tr class="headings">

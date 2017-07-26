@@ -190,6 +190,7 @@
 
 <!-- Custom Theme Scripts -->
 <script src="../build/js/custom.min.js"></script>
+<script src="../js/table2excel.js"></script>
 
 <script src="../js/validate.js"></script>
 <script src="../js/cusDialog.js"></script>

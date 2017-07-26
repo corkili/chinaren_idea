@@ -82,6 +82,12 @@
                             <div class="x_title">
                                 <h2>班级列表</h2>
                                 <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <button class="btn btn-dark" style="margin-right: 5px;"
+                                                onclick="table2excel('datatable')">
+                                            <i class="fa fa-download"></i>导出Excel
+                                        </button>
+                                    </li>
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
                                 </ul>
@@ -225,6 +231,7 @@
 
 <!-- Custom Theme Scripts -->
 <script src="../build/js/custom.min.js"></script>
+<script src="../js/table2excel.js"></script>
 
 <script src="../js/validate.js"></script>
 <script src="../js/cusDialog.js"></script>

@@ -2,15 +2,18 @@ package chinaren.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import chinaren.model.Result;
+import chinaren.model.*;
+import chinaren.service.ClassService;
+import chinaren.service.MessageService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import chinaren.common.SessionContext;
-import chinaren.model.User;
 import chinaren.service.UserService;
 import chinaren.util.CaptchaUtil;
 
@@ -35,6 +37,12 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+    private ClassService classService;
+
+	@Autowired
+    private MessageService messageService;
 	
 	private Logger logger = Logger.getLogger(UserController.class);
 
@@ -80,12 +88,17 @@ public class UserController {
     }
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public ModelAndView modifyPassword(HttpSession session,
-                                       @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+	public ModelAndView mainPage(HttpSession session,
+                                       @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName)
+            throws ParseException {
 		long userId = Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
-		User user = userService.getUserInformation(userId).getResult();
+        User user = userService.getUserInformation(userId).getResult();
+        StatisticsResult statisticsResult = userService.getStatisticsResult(userId);
 		return new ModelAndView("main")
                 .addObject("display_name", displayName)
+                .addObject("dateStrings", statisticsResult.getDataString())
+                .addObject("classNames", statisticsResult.getClassNames())
+                .addObject("counts", statisticsResult.getCounts())
 				.addObject("user", user);
 	}
 

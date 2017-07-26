@@ -1,5 +1,6 @@
 package chinaren.service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import chinaren.dao.AddressDao;
+import chinaren.dao.MessageDao;
 import chinaren.model.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
     private AddressDao addressDao;
+
+	@Autowired
+    private MessageDao messageDao;
 	
 	private Logger logger = Logger.getLogger(UserServiceImpl.class);
 	
@@ -290,6 +295,73 @@ public class UserServiceImpl implements UserService {
 		return new Result<Boolean>(true, "发送邮件成功！", true);
 	}
 
+	public StatisticsResult getStatisticsResult(long userId) throws ParseException {
+	    StatisticsResult statisticsResult = getUserContext().getStatisticsResult(userId);
+	    if (statisticsResult == null) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
+            // 计算日期
+            Date now = new Date();
+            GregorianCalendar calendar = new GregorianCalendar();
+            calendar.setTime(now);
+            calendar.add(Calendar.DAY_OF_MONTH, -7);
+            Date begin = calendar.getTime();
+            // 结束日期计算
+            // 格式日期
+            begin = simpleDateFormat.parse(simpleDateFormat.format(begin));
+            now = simpleDateFormat.parse(simpleDateFormat.format(now));
+            // 创建列表
+            List<String> dateStrings = new ArrayList<>();
+            List<Long> classIds = new ArrayList<>();
+            List<String> classNames = new ArrayList<>();
+            Map<String, Map<Long, MessageCounter>> messageCounters = new HashMap<>();
+            Calendar dd = Calendar.getInstance();
+            dd.setTime(begin);
+            while (dd.getTime().before(now)) {
+                String dateStr = simpleDateFormat.format(dd.getTime());
+                messageCounters.put(dateStr, new HashMap<>());
+                dateStrings.add(dateStr);
+                dd.add(Calendar.DAY_OF_MONTH, 1);
+            }
+            List<Message> messages = messageDao.selectMessageByUserId(userId).getResult();
+            logger.info("message count: " + messages.size());
+            for (Message message : messages) {
+                if (begin.before(message.getMsgTime()) && now.after(message.getMsgTime())) {
+                    String dateStr = simpleDateFormat.format(message.getMsgTime());
+                    Map<Long, MessageCounter> mcMap = messageCounters.get(dateStr);
+                    if (messageCounters.get(dateStr).get(message.getClassId()) == null) {
+                        MessageCounter mc = new MessageCounter();
+                        mc.setDate(dateStr);
+                        mc.setClassId(message.getClassId());
+                        mc.setClassName(message.getClassName());
+                        mcMap.put(message.getClassId(), mc);
+                    }
+                    if (!classIds.contains(message.getClassId())) {
+                        classIds.add(message.getClassId());
+                        classNames.add(message.getClassName());
+                    }
+                    mcMap.get(message.getClassId()).getMessages().add(message);
+                }
+            }
+            int[][] counts = new int[classIds.size()][dateStrings.size()];
+            for (int i = 0; i < dateStrings.size(); i++) {
+                for (int j = 0; j < classIds.size(); j++) {
+                    try {
+                        counts[j][i] = messageCounters.get(dateStrings.get(i)).get(classIds.get(j)).getMessages().size();
+                    } catch (NullPointerException e) {
+                        counts[j][i] = 0;
+                    }
+                }
+            }
+            for (int i = 0; i < dateStrings.size(); i++) {
+                dateStrings.set(i, dateStrings.get(i).substring(dateStrings.get(i).indexOf(".") + 1));
+            }
+            statisticsResult = new StatisticsResult(dateStrings, classNames, counts);
+            getUserContext().addStatisticsResult(userId, statisticsResult);
+        }
+        return statisticsResult;
+    }
+
+	@Override
     public UserServiceImpl.AddressContext getAddressContext() {
 	    if (addressContext == null) {
 	        addressContext = new AddressContext();
@@ -297,6 +369,7 @@ public class UserServiceImpl implements UserService {
         return addressContext;
     }
 
+    @Override
     public UserServiceImpl.UserContext getUserContext() {
 		if (userContext == null) {
 			userContext = new UserContext();
@@ -374,11 +447,17 @@ public class UserServiceImpl implements UserService {
 		private Map<String, String> emailCode;
 
 		/**
+		 * 保存已登录用户的活跃数据统计结果
+		 */
+		private Map<Long, StatisticsResult> statistics;
+
+		/**
 		 * 私有构造方法
 		 */
 		private UserContext() {
 			loginUsers = new HashMap<Long, User>();
 			emailCode = new HashMap<String, String>();
+			statistics = new HashMap<>();
 		}
 
 		/**
@@ -403,6 +482,7 @@ public class UserServiceImpl implements UserService {
 		 */
 		public void removeUser(long userId) {
 			loginUsers.remove(userId);
+			statistics.remove(userId);
 		}
 
 		/**
@@ -447,6 +527,24 @@ public class UserServiceImpl implements UserService {
 				return true;
 			}
 			return false;
+		}
+
+        /**
+         * 获取用户的统计数据
+         * @param userId 用户的ID
+         * @return 用户的统计数据
+         */
+		public StatisticsResult getStatisticsResult(long userId) {
+			return statistics.get(userId);
+		}
+
+        /**
+         * 设置用户的统计数据
+         * @param userId 用户的ID
+         * @param statisticsResult 用户的统计数据
+         */
+		public void addStatisticsResult(long userId, StatisticsResult statisticsResult) {
+			statistics.put(userId, statisticsResult);
 		}
 
 		/**

@@ -83,6 +83,9 @@
                             <div class="x_title">
                                 <h2>${class_name}<small>留言板</small></h2>
                                 <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <button id="compose" class="btn btn-dark" style="margin-right: 5px;" type="button">发布留言</button>
+                                    </li>
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
                                 </ul>
@@ -91,9 +94,6 @@
 
                             <div class="x_content">
                                 <div class="table-responsive">
-                                    <br/>
-                                    <button id="compose" class="btn btn-sm btn-success btn-block" type="button">发布留言</button>
-                                    <br/>
                                     <table id="datatable" class="table table-striped jambo_table" style="white-space: nowrap;">
                                         <thead>
                                         <tr class="headings">

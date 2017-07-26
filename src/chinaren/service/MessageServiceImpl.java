@@ -24,7 +24,10 @@ public class MessageServiceImpl implements MessageService {
 
 	@Autowired
 	private MessageDao messageDao;
-	
+
+	@Autowired
+	private UserService userService;
+
 	private Logger logger = Logger.getLogger(MessageServiceImpl.class);
 	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss - ");
@@ -66,12 +69,14 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public Result<Boolean> deleteMessage(long messageId) {
 		logger.info(dateFormat.format(new Date()) + "delete message - message " + messageId);
+		Message message = messageDao.selectMessageById(messageId).getResult();
 		Result<Boolean> result = messageDao.deleteMessage(messageId);
 		if (!result.isSuccessful()) {
 			logger.info(dateFormat.format(new Date()) + "delete message: failed - message " + messageId);
 			return new Result<Boolean>(false, "删除留言时发生错误", false);
 		}
 		logger.info(dateFormat.format(new Date()) + "delete message: successful - message " + messageId);
+		userService.getUserContext().addStatisticsResult(message.getUserId(), null);
 		return new Result<Boolean>(true, "留言删除成功", true);
 	}
 
