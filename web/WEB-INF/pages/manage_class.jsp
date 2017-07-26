@@ -61,13 +61,7 @@
                 class_id: document.getElementById('editClassId').value,
                 description: document.getElementById('editDescription').value
             }, function (data) {
-                if (data.indexOf('successful')) {
-                    alert('修改成功!');
-                    document.getElementById('editDiv').style.display='none';
-                } else {
-                    alert('修改失败，请重试！');
-                }
-
+                location.reload(true);
             });
         }
     </script>

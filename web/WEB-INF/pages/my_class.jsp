@@ -159,16 +159,15 @@
                                             <td class=" "><span style="color: #FF1800;">待审核</span></td>
                                             <td class=" ">
                                                 <button type="button" class="btn btn-round btn-info"
-                                                        onclick="sAlert('${myClasses[status.index].className}-班级介绍','${myClasses[status.index].description}')">
+                                                        onclick="sAlert('${applyClasses[status.index].className}-班级介绍','${applyClasses[status.index].description}')">
                                                     查看
                                                 </button>
                                             </td>
                                             <td class=" last">
-                                                <button type="button" class="btn btn-round btn-info">Info</button>
                                                 <form action="exitClass" method="post" onsubmit="return checkExitClassForm(this);">
                                                     <input type="hidden" name="user_id" value="${user_id}">
-                                                    <input type="hidden" name="manager_id" value="${myClasses[status.index].managerId}">
-                                                    <input type="hidden" name="class_id" value="${myClasses[status.index].classId}">
+                                                    <input type="hidden" name="manager_id" value="${applyClasses[status.index].managerId}">
+                                                    <input type="hidden" name="class_id" value="${applyClasses[status.index].classId}">
                                                     <input type="submit" value="取消申请"
                                                            onclick="return confirm('确认取消申请？');"
                                                            class="btn btn-round btn-danger">

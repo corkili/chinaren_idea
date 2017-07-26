@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
 	
 	private static final String CHECK_EMAIL = "^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$";
 	
-	private static final String CHECK_PHONE = "^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+	private static final String CHECK_PHONE = "^[0-9]*$";
 
 	/**
 	 * 构造方法

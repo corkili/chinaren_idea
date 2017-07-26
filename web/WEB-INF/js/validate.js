@@ -133,7 +133,7 @@ function checkName() {
 
 function checkPhone() {
     var phoneStr = $$('phone').value;
-    var reg = /^((13[0-9])|(15[^4,\D])|(18[0,5-9]))\d{8}$/;
+    var reg = /^[0-9]*$/;
     if (phoneStr.length == 11 && reg.test(phoneStr)) {
         $$('phone').style.color=defaultTextColor;
         return true;

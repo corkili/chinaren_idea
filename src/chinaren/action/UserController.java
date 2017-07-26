@@ -250,6 +250,9 @@ public class UserController {
         }
         modelAndView.setViewName("modify_information");
 	    User user = result.getResult();
+	    user.setProvince("0");
+	    user.setCity("0");
+	    user.setArea("0");
 	    modelAndView.addObject("has_error", false)
                 .addObject("error_message", "")
                 .addObject("display_name", displayName)

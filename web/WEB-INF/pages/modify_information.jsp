@@ -309,6 +309,30 @@
 <script src="../build/js/custom.min.js"></script>
 <script src="../js/validate.js"></script>
 <script type="text/javascript">
+    var provinceMap = {};
+    <c:forEach items="${provinces}" var="province">
+    provinceMap['${province.province}'] = '${province.provinceId}';
+    </c:forEach>
+
+    var cityMap = {};
+    var temp;
+    <c:forEach items="${cities}" var="cityList">
+    temp = {};
+    <c:forEach items="${cityList.value}" var="city">
+    temp['${city.cityId}'] = '${city.city}';
+    </c:forEach>
+    cityMap['${cityList.key}'] = temp;
+    </c:forEach>
+
+    var areaMap = {};
+    <c:forEach items="${areas}" var="areaList">
+    temp = {};
+    <c:forEach items="${areaList.value}" var="area">
+    temp['${area.areaId}'] = '${area.area}';
+    </c:forEach>
+    areaMap['${areaList.key}'] = temp;
+    </c:forEach>
+
     function change_city() {
         var cityList = cityMap[provinceMap[document.getElementById('province').value]];
         var citySelector = document.getElementById('city');

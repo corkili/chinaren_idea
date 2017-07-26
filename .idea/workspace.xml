@@ -2,9 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6618c15-c0f4-48f3-b65c-2b3bbe4e0a16" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/pages/search_class.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chinaren/action/MessageController.java" afterPath="$PROJECT_DIR$/src/chinaren/action/MessageController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/pages/my_messages.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/pages/my_messages.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chinaren/action/ClassController.java" afterPath="$PROJECT_DIR$/src/chinaren/action/ClassController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chinaren/action/UserController.java" afterPath="$PROJECT_DIR$/src/chinaren/action/UserController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chinaren/dao/ClassDaoImpl.java" afterPath="$PROJECT_DIR$/src/chinaren/dao/ClassDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chinaren/service/ClassServiceImpl.java" afterPath="$PROJECT_DIR$/src/chinaren/service/ClassServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chinaren/service/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/chinaren/service/UserServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/js/email.js" afterPath="$PROJECT_DIR$/web/WEB-INF/js/email.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/js/validate.js" afterPath="$PROJECT_DIR$/web/WEB-INF/js/validate.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/pages/create_class.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/pages/create_class.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/pages/manage_class.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/pages/manage_class.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/pages/manage_classmates.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/pages/manage_classmates.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/pages/modify_information.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/pages/modify_information.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/pages/my_class.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/pages/my_class.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/pages/right_top.jspf" afterPath="$PROJECT_DIR$/web/WEB-INF/pages/right_top.jspf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/pages/sidebar_menu.jspf" afterPath="$PROJECT_DIR$/web/WEB-INF/pages/sidebar_menu.jspf" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -19,33 +31,25 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="class_message.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/class_message.jsp">
+      <file leaf-file-name="search_class.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/search_class.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2093">
-              <caret line="91" column="62" lean-forward="false" selection-start-line="91" selection-start-column="62" selection-end-line="91" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="class_message_view.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/class_message_view.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="248" column="17" lean-forward="true" selection-start-line="248" selection-start-column="17" selection-end-line="248" selection-end-column="17" />
+            <state relative-caret-position="470">
+              <caret line="133" column="100" lean-forward="true" selection-start-line="133" selection-start-column="100" selection-end-line="133" selection-end-column="100" />
               <folding>
-                <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#4;n#form#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MessageController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/chinaren/action/MessageController.java">
+      <file leaf-file-name="ClassController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/chinaren/action/ClassController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="124" column="45" lean-forward="true" selection-start-line="124" selection-start-column="45" selection-end-line="124" selection-end-column="45" />
+            <state relative-caret-position="230">
+              <caret line="234" column="59" lean-forward="true" selection-start-line="234" selection-start-column="59" selection-end-line="234" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,21 +57,65 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="my_messages.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/my_messages.jsp">
+      <file leaf-file-name="MessageService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chinaren/service/MessageService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="133" column="95" lean-forward="false" selection-start-line="133" selection-start-column="95" selection-end-line="133" selection-end-column="95" />
+            <state relative-caret-position="253">
+              <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sidebar_menu.jspf" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/sidebar_menu.jspf">
+      <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chinaren/service/UserServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+            <state relative-caret-position="319">
+              <caret line="52" column="55" lean-forward="false" selection-start-line="52" selection-start-column="47" selection-end-line="52" selection-end-column="55" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="class#AddressContext#0;class#UserServiceImpl#0" expanded="false" />
+                <element signature="class#UserContext#0;class#UserServiceImpl#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="validate.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/js/validate.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="134" column="37" lean-forward="true" selection-start-line="134" selection-start-column="37" selection-end-line="134" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="modify_information.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/modify_information.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="314" column="16" lean-forward="true" selection-start-line="314" selection-start-column="16" selection-end-line="314" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="my_class.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/my_class.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="166" column="67" lean-forward="false" selection-start-line="166" selection-start-column="67" selection-end-line="166" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manage_classmates.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/manage_classmates.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="164" column="64" lean-forward="true" selection-start-line="164" selection-start-column="64" selection-end-line="164" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -94,15 +142,17 @@
       <find>address</find>
       <find>Province</find>
       <find>code</find>
-      <find>province</find>
       <find>Name</find>
       <find>springweb_folder</find>
       <find>springweb_basePath</find>
-      <find>myClasses</find>
       <find>class</find>
       <find>classmates</find>
       <find>editDiv</find>
       <find>manageClasses</find>
+      <find>myClasses</find>
+      <find>form:</find>
+      <find>province</find>
+      <find>school</find>
     </findStrings>
     <replaceStrings>
       <replace>AddressContext</replace>
@@ -110,7 +160,6 @@
       <replace>city</replace>
       <replace>Area</replace>
       <replace>captcha</replace>
-      <replace>area</replace>
       <replace>School</replace>
       <replace>applyClasses</replace>
       <replace>manageClasses</replace>
@@ -118,6 +167,9 @@
       <replace>applyUsers</replace>
       <replace>document</replace>
       <replace>myClasses</replace>
+      <replace>classes</replace>
+      <replace>area</replace>
+      <replace>className</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -131,7 +183,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/chinaren/dao/AddressDao.java" />
         <option value="$PROJECT_DIR$/src/chinaren/dao/AddressDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/chinaren/common/UserContext.java" />
         <option value="$PROJECT_DIR$/src/chinaren/util/EmailUtil.java" />
@@ -150,9 +201,7 @@
         <option value="$PROJECT_DIR$/resource/messages_en_US.properties" />
         <option value="$PROJECT_DIR$/src/chinaren/util/HeadImageUtil.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/pages/left_top.jspf" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/pages/right_top.jspf" />
         <option value="$PROJECT_DIR$/src/chinaren/common/SessionContext.java" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/pages/modify_information.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/pages/register.jsp" />
         <option value="$PROJECT_DIR$/src/chinaren/dao/MessageDao.java" />
         <option value="$PROJECT_DIR$/src/chinaren/dao/AttendDao.java" />
@@ -162,26 +211,29 @@
         <option value="$PROJECT_DIR$/web/WEB-INF/js/dialog.js" />
         <option value="$PROJECT_DIR$/src/chinaren/model/Class.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/js/cusDialog.js" />
-        <option value="$PROJECT_DIR$/src/chinaren/dao/ClassDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/chinaren/service/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/pages/create_class.jsp" />
         <option value="$PROJECT_DIR$/src/chinaren/service/ClassService.java" />
-        <option value="$PROJECT_DIR$/src/chinaren/service/ClassServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/chinaren/action/ClassController.java" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/js/email.js" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/pages/manage_class.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/pages/manage_classmates.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/pages/my_class.jsp" />
         <option value="$PROJECT_DIR$/src/chinaren/dao/MessageDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/chinaren/action/UserController.java" />
         <option value="$PROJECT_DIR$/src/chinaren/model/Message.java" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/js/validate.js" />
         <option value="$PROJECT_DIR$/web/WEB-INF/pages/class_message.jsp" />
         <option value="$PROJECT_DIR$/src/chinaren/service/MessageServiceImpl.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/pages/class_message_view.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/pages/sidebar_menu.jspf" />
-        <option value="$PROJECT_DIR$/src/chinaren/action/MessageController.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/pages/my_messages.jsp" />
+        <option value="$PROJECT_DIR$/src/chinaren/action/MessageController.java" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/pages/create_class.jsp" />
+        <option value="$PROJECT_DIR$/src/chinaren/action/ClassController.java" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/pages/sidebar_menu.jspf" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/pages/right_top.jspf" />
+        <option value="$PROJECT_DIR$/src/chinaren/action/UserController.java" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/js/email.js" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/pages/manage_class.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/pages/modify_information.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/pages/my_class.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/pages/manage_classmates.jsp" />
+        <option value="$PROJECT_DIR$/src/chinaren/service/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/js/validate.js" />
+        <option value="$PROJECT_DIR$/src/chinaren/service/ClassServiceImpl.java" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/pages/search_class.jsp" />
+        <option value="$PROJECT_DIR$/src/chinaren/dao/ClassDaoImpl.java" />
       </list>
     </option>
   </component>
@@ -306,11 +358,99 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chinaren" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chinaren" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="chinaren" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chinaren" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chinaren" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chinaren" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chinaren" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chinaren" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chinaren" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chinaren" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chinaren" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chinaren" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dao" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -897,7 +1037,7 @@
       <workItem from="1500888877517" duration="19887000" />
       <workItem from="1500944251966" duration="25853000" />
       <workItem from="1500976035039" duration="17157000" />
-      <workItem from="1501030104826" duration="765000" />
+      <workItem from="1501030104826" duration="9603000" />
     </task>
     <task id="LOCAL-00001" summary="Complete modify user's information and headImage">
       <created>1500950764621</created>
@@ -941,11 +1081,18 @@
       <option name="project" value="LOCAL" />
       <updated>1500997167977</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Complete my messages view">
+      <created>1501030889362</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1501030889362</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83237000" />
+    <option name="totallyTimeSpent" value="92075000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -958,6 +1105,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="31" width="1938" height="1058" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1010,7 +1158,9 @@
     <MESSAGE value="Complete mange class page" />
     <MESSAGE value="Complete mange class page 2.0" />
     <MESSAGE value="Complete class message and release message" />
-    <option name="LAST_COMMIT_MESSAGE" value="Complete class message and release message" />
+    <MESSAGE value="Complete my messages view" />
+    <MESSAGE value="Complete search classes, fixed some bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Complete search classes, fixed some bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1023,27 +1173,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/js/address.js" />
-    <entry file="file://$PROJECT_DIR$/src/chinaren/common/AddressContext.java" />
-    <entry file="file://$PROJECT_DIR$/src/chinaren/common/UserContext.java" />
-    <entry file="file://$PROJECT_DIR$/resource/messages_zh_CN.properties">
-      <provider editor-type-id="ResourceBundle">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resource/messages_en_US.properties">
       <provider selected="true" editor-type-id="ResourceBundle">
         <state />
@@ -1066,6 +1195,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
           <caret line="31" column="8" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1178,14 +1308,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/modify_information.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-170">
-          <caret line="309" column="41" lean-forward="true" selection-start-line="309" selection-start-column="41" selection-end-line="309" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/no_login.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
@@ -1221,96 +1343,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/register.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="297" column="35" lean-forward="false" selection-start-line="297" selection-start-column="35" selection-end-line="297" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/create_class.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="112" column="103" lean-forward="true" selection-start-line="112" selection-start-column="103" selection-end-line="112" selection-end-column="103" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chinaren/service/ClassServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="381" column="50" lean-forward="false" selection-start-line="381" selection-start-column="50" selection-end-line="381" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/js/email.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="62" lean-forward="true" selection-start-line="8" selection-start-column="62" selection-end-line="8" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chinaren/action/ClassController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="28" column="37" lean-forward="false" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/my_class.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="98" column="62" lean-forward="true" selection-start-line="98" selection-start-column="62" selection-end-line="98" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/manage_classmates.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/manage_class.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chinaren/dao/ClassDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-948">
-          <caret line="402" column="35" lean-forward="true" selection-start-line="402" selection-start-column="35" selection-end-line="402" selection-end-column="35" />
-          <folding>
-            <marker date="1500973307805" expanded="true" signature="1296:1358" ph="select * fro... class" />
-            <marker date="1500973307805" expanded="true" signature="2805:3005" ph="select * fro... class" />
-            <marker date="1500973307805" expanded="true" signature="4336:4400" ph="select * fro... class" />
-            <marker date="1500973307805" expanded="true" signature="5631:5645" ph="select * fro... class" />
-            <marker date="1500973307805" expanded="true" signature="6929:6991" ph="select * fro... class" />
-            <marker date="1500973307805" expanded="true" signature="8300:8389" ph="select * fro... class" />
-            <marker date="1500973307805" expanded="true" signature="9735:9847" ph="select * fro... class" />
-            <marker date="1500973307805" expanded="true" signature="11232:11374" ph="select * fro... class" />
-            <marker date="1500973307805" expanded="true" signature="12818:12999" ph="select * fro... class" />
-            <marker date="1500973307805" expanded="true" signature="14503:14718" ph="select * fro... class" />
-            <marker date="1500973307805" expanded="true" signature="16053:16265" ph="insert into class... " />
-            <marker date="1500973307805" expanded="true" signature="16053:16316" ph="insert into class... " />
-            <marker date="1500973307805" expanded="true" signature="18073:18133" ph="delete from " />
-            <marker date="1500973307805" expanded="true" signature="18980:19065" ph="update class... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chinaren/dao/MessageDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-472">
@@ -1333,14 +1365,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/right_top.jspf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="49" lean-forward="false" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/left_top.jspf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
@@ -1349,37 +1373,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chinaren/action/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="65" column="5" lean-forward="true" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
-          <folding>
-            <element signature="method#captcha#0;class#UserController#0" expanded="false" />
-            <element signature="method#login#0;class#UserController#0" expanded="false" />
-            <element signature="method#login#1;class#UserController#0" expanded="false" />
-            <element signature="method#register#1;class#UserController#0" expanded="false" />
-            <element signature="method#resetPassword#0;class#UserController#0" expanded="false" />
-            <element signature="method#resetPassword#1;class#UserController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/vendors/bootstrap/dist/css/bootstrap.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
           <caret line="4" column="19071" lean-forward="false" selection-start-line="4" selection-start-column="19071" selection-end-line="4" selection-end-column="19071" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chinaren/service/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1194">
-          <caret line="363" column="29" lean-forward="false" selection-start-line="363" selection-start-column="29" selection-end-line="363" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#AddressContext#0;class#UserServiceImpl#0" expanded="false" />
-            <element signature="class#UserContext#0;class#UserServiceImpl#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1388,18 +1386,10 @@
         <state relative-caret-position="264">
           <caret line="152" column="13" lean-forward="true" selection-start-line="152" selection-start-column="13" selection-end-line="152" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2383#2384#0" expanded="true" />
-            <element signature="e#2436#2437#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2383#2384#0" expanded="false" />
+            <element signature="e#2436#2437#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/js/validate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="65" column="16" lean-forward="false" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1416,44 +1406,228 @@
         <state relative-caret-position="488">
           <caret line="87" column="66" lean-forward="false" selection-start-line="87" selection-start-column="66" selection-end-line="87" selection-end-column="66" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/class_message_view.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="248" column="17" lean-forward="true" selection-start-line="248" selection-start-column="17" selection-end-line="248" selection-end-column="17" />
-          <folding>
-            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/sidebar_menu.jspf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chinaren/action/MessageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="124" column="45" lean-forward="true" selection-start-line="124" selection-start-column="45" selection-end-line="124" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/my_messages.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="133" column="95" lean-forward="false" selection-start-line="133" selection-start-column="95" selection-end-line="133" selection-end-column="95" />
+        <state relative-caret-position="322">
+          <caret line="137" column="41" lean-forward="false" selection-start-line="137" selection-start-column="41" selection-end-line="137" selection-end-column="41" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chinaren/action/MessageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="115" column="26" lean-forward="true" selection-start-line="115" selection-start-column="26" selection-end-line="115" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/create_class.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="255" column="24" lean-forward="false" selection-start-line="255" selection-start-column="24" selection-end-line="255" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-138">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chinaren/util/HashUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-93">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/sidebar_menu.jspf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="33" lean-forward="false" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/right_top.jspf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="57" lean-forward="true" selection-start-line="15" selection-start-column="57" selection-end-line="15" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/register.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4017">
+          <caret line="297" column="35" lean-forward="false" selection-start-line="297" selection-start-column="35" selection-end-line="297" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/class_message_view.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="90" column="0" lean-forward="true" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chinaren/action/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-483">
+          <caret line="254" column="26" lean-forward="false" selection-start-line="254" selection-start-column="26" selection-end-line="254" selection-end-column="26" />
+          <folding>
+            <element signature="method#captcha#0;class#UserController#0" expanded="false" />
+            <element signature="method#login#0;class#UserController#0" expanded="false" />
+            <element signature="method#login#1;class#UserController#0" expanded="false" />
+            <element signature="method#register#1;class#UserController#0" expanded="false" />
+            <element signature="method#resetPassword#0;class#UserController#0" expanded="false" />
+            <element signature="method#resetPassword#1;class#UserController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/js/email.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="11" column="9" lean-forward="false" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/manage_class.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="63" column="38" lean-forward="false" selection-start-line="63" selection-start-column="38" selection-end-line="63" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/build/js/custom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/modify_information.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="314" column="16" lean-forward="true" selection-start-line="314" selection-start-column="16" selection-end-line="314" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/my_class.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="166" column="67" lean-forward="false" selection-start-line="166" selection-start-column="67" selection-end-line="166" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/manage_classmates.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="164" column="64" lean-forward="true" selection-start-line="164" selection-start-column="64" selection-end-line="164" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chinaren/service/MessageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chinaren/service/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="52" column="55" lean-forward="false" selection-start-line="52" selection-start-column="47" selection-end-line="52" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#AddressContext#0;class#UserServiceImpl#0" expanded="false" />
+            <element signature="class#UserContext#0;class#UserServiceImpl#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/js/validate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="134" column="37" lean-forward="true" selection-start-line="134" selection-start-column="37" selection-end-line="134" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/pages/search_class.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="470">
+          <caret line="133" column="100" lean-forward="true" selection-start-line="133" selection-start-column="100" selection-end-line="133" selection-end-column="100" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#form#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chinaren/dao/ClassDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-175">
+          <caret line="414" column="60" lean-forward="false" selection-start-line="414" selection-start-column="60" selection-end-line="414" selection-end-column="60" />
+          <folding>
+            <marker date="1501039547935" expanded="true" signature="1296:1358" ph="select * fro... class" />
+            <marker date="1501039547935" expanded="true" signature="2805:3005" ph="select * fro... class" />
+            <marker date="1501039547935" expanded="true" signature="4336:4400" ph="select * fro... class" />
+            <marker date="1501039547935" expanded="true" signature="5631:5645" ph="select * fro... class" />
+            <marker date="1501039547935" expanded="true" signature="6929:6991" ph="select * fro... class" />
+            <marker date="1501039547935" expanded="true" signature="8300:8389" ph="select * fro... class" />
+            <marker date="1501039547935" expanded="true" signature="9735:9847" ph="select * fro... class" />
+            <marker date="1501039547935" expanded="true" signature="11232:11374" ph="select * fro... class" />
+            <marker date="1501039547935" expanded="true" signature="12818:12999" ph="select * fro... class" />
+            <marker date="1501039547935" expanded="true" signature="14520:14738" ph="select * fro... class" />
+            <marker date="1501039547935" expanded="true" signature="18538:18750" ph="insert into class... " />
+            <marker date="1501039547935" expanded="true" signature="18538:18801" ph="insert into class... " />
+            <marker date="1501039547935" expanded="true" signature="20558:20618" ph="delete from " />
+            <marker date="1501039547935" expanded="true" signature="21465:21550" ph="update class... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chinaren/service/ClassServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="100" column="74" lean-forward="true" selection-start-line="100" selection-start-column="74" selection-end-line="100" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chinaren/action/ClassController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="234" column="59" lean-forward="true" selection-start-line="234" selection-start-column="59" selection-end-line="234" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

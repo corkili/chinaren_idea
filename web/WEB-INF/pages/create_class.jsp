@@ -92,7 +92,7 @@
 
                                     <label for="gradeYear">年级 <span class="required">*</span> :</label>
                                     <form:input path="gradeYear" type="text" id="gradeYear" class="form-control"
-                                                name="school" required="required" placeholder="e.g. 2017" onchange="checkYear()"/>
+                                                name="gradeYear" required="required" placeholder="e.g. 2017" onchange="checkYear()"/>
 
                                     <label for="province">省份 <span class="required">*</span> :</label>
                                     <form:select path="province" id="province" name="province" class="form-control"

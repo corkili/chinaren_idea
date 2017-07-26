@@ -157,7 +157,7 @@
                                                     <input type="hidden" name="class_id" value="${clazz.classId}">
                                                     <input type="submit" value="同意"
                                                            onclick="return confirm('确认允许成员加入-${applyUsers[status.index].name}？');"
-                                                           class="btn btn-round btn-danger">
+                                                           class="btn btn-round btn-success">
                                                 </form>
                                                 <form action="refuseJoin" method="post">
                                                     <input type="hidden" name="user_id" value="${applyUsers[status.index].userId}">
@@ -165,7 +165,7 @@
                                                     <input type="hidden" name="class_id" value="${clazz.classId}">
                                                     <input type="submit" value="拒绝"
                                                            onclick="return confirm('确认拒绝成员加入-${applyUsers[status.index].name}？');"
-                                                           class="btn btn-round btn-danger">
+                                                           class="btn btn-round btn-dark">
                                                 </form>
                                             </td>
                                             </tr>

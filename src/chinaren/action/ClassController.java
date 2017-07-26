@@ -12,11 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -202,5 +204,52 @@ public class ClassController {
             out.append("failed");
             out.flush();
         }
+    }
+
+    @RequestMapping(value = "/searchClass", method = RequestMethod.GET)
+    public ModelAndView searchClass(HttpSession session, @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView("search_class");
+        List<Class> classes = new ArrayList<>();
+        long userId = Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
+        modelAndView.addObject("has_error", false)
+                .addObject("error_message", "")
+                .addObject("display_name", displayName)
+                .addObject("user_id", userId)
+                .addObject("provinces", userService.getAddressContext().getProvinces())
+                .addObject("cities", userService.getAddressContext().getCities())
+                .addObject("areas", userService.getAddressContext().getAreas())
+                .addObject("classes", classes);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/searchClass", method = RequestMethod.POST)
+    public ModelAndView searchClass(@RequestParam("action") int action, HttpServletRequest request,
+                                    @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView("search_class");
+        List<Class> classes = new ArrayList<>();
+        long userId = Long.parseLong(request.getSession().getAttribute(SessionContext.ATTR_USER_ID).toString());
+        if (action == 1) {
+            String province = request.getParameter("province");
+            String city = request.getParameter("city");
+            String area = request.getParameter("area");
+            String school = request.getParameter("school");
+            String gradeYear = request.getParameter("gradeYear");
+            String className = request.getParameter("className");
+            classes = classService.searchClasses(province, city, area, school, gradeYear, className).getResult();
+        } else if (action == 2) {
+            long classId = Long.parseLong(request.getParameter("class_id"));
+            classService.applyJoinClass(userId, classId);
+            modelAndView.setViewName("redirect:/myClass");
+            return modelAndView;
+        }
+        modelAndView.addObject("has_error", false)
+                .addObject("error_message", "")
+                .addObject("display_name", displayName)
+                .addObject("user_id", userId)
+                .addObject("provinces", userService.getAddressContext().getProvinces())
+                .addObject("cities", userService.getAddressContext().getCities())
+                .addObject("areas", userService.getAddressContext().getAreas())
+                .addObject("classes", classes);
+        return modelAndView;
     }
 }

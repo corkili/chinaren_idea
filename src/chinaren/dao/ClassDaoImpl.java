@@ -350,26 +350,79 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 		logger.info(dateFormat.format(new Date()) + "result: " + message);
 		return new Result<List<Class>>(successful, message, classes);
 	}
+//
+//	/**
+//	 * @see chinaren.dao.ClassDao#selectClasses(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+//	 */
+//	@Override
+//	public Result<List<Class>> selectClasses(String province, String city, String area,
+//			String school, String gradeYear, String className) {
+//		logger.info(dateFormat.format(new Date()) + "action: select classes by class information");
+//		String sql = "select * from " + TABLE_CLASS + " where " + COL_PROVINCE + "=? and "
+//				+ COL_CITY + "=? and " + COL_AREA + "=? and " + COL_SCHOOL + " like ? and "
+//				+ COL_GRADE_YEAR + " like ? and " + COL_CLASS_NAME + " like ?";
+//		logger.info(dateFormat.format(new Date()) + "sql: " + sql);
+//		List<Class> classes = null;
+//		boolean successful = false;
+//		String message = "";
+//		try {
+//			RowMapper<Class> rowMapper = BeanPropertyRowMapper.newInstance(Class.class);
+//			Object[] params = { province, city, area, "%" + school + "%",
+//					"%" + gradeYear + "%", "%" + className + "%" };
+//			classes = jdbcTemplate.query(sql, params, rowMapper);
+//			classes = classes != null ? classes : new ArrayList<Class>();
+//			successful = true;
+//			message = "select<successful>";
+//			for (Class clazz : classes) {
+//				Result<List<Long>> result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_TRUE);
+//				clazz.setClassmates(result.getResult());
+//				result = attendDao.selectUserIdByClassId(clazz.getClassId(), STATUS_FALSE);
+//				clazz.setNotApplys(result.getResult());
+//			}
+//		} catch (DataAccessException e) {
+//			successful = false;
+//			message = "select<failed>";
+//			classes = new ArrayList<Class>();
+//		}
+//		logger.info(dateFormat.format(new Date()) + "result: " + message);
+//		return new Result<List<Class>>(successful, message, classes);
+//	}
 
 	/**
 	 * @see chinaren.dao.ClassDao#selectClasses(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public Result<List<Class>> selectClasses(String province, String city, String area, 
-			String school, String gradeYear, String className) {
+	public Result<List<Class>> selectClasses(String province, String city, String area,
+											 String school, String gradeYear, String className) {
 		logger.info(dateFormat.format(new Date()) + "action: select classes by class information");
-		String sql = "select * from " + TABLE_CLASS + " where " + COL_PROVINCE + "=? and "
-				+ COL_CITY + "=? and " + COL_AREA + "=? and " + COL_SCHOOL + " like ? and " 
-				+ COL_GRADE_YEAR + " like ? and " + COL_CLASS_NAME + " like ?";
+		StringBuilder sb = new StringBuilder();
+		sb.append("select * from " + TABLE_CLASS + " where 1");
+		if (province != null && !"".equals(province.trim())) {
+			sb.append(" and " + COL_PROVINCE + "=\"" + province.trim() + "\"");
+		}
+        if (city != null && !"".equals(city.trim())) {
+            sb.append(" and " + COL_CITY + "=\"" + city.trim() + "\"");
+        }
+        if (area != null && !"".equals(area.trim())) {
+            sb.append(" and " + COL_AREA + "=\"" + area.trim() + "\"");
+        }
+        if (school != null && !"".equals(school.trim())) {
+            sb.append(" and " + COL_SCHOOL + " like \"%" + school.trim() + "%\"");
+        }
+        if (gradeYear != null && !"".equals(gradeYear.trim())) {
+            sb.append(" and " + COL_GRADE_YEAR + " like \"%" + gradeYear.trim() + "%\"");
+        }
+        if (className != null && !"".equals(className.trim())) {
+            sb.append(" and " + COL_CLASS_NAME + " like \"%" + className.trim() + "%\"");
+        }
+		String sql = sb.toString();
 		logger.info(dateFormat.format(new Date()) + "sql: " + sql);
 		List<Class> classes = null;
 		boolean successful = false;
 		String message = "";
 		try {
 			RowMapper<Class> rowMapper = BeanPropertyRowMapper.newInstance(Class.class);
-			Object[] params = { province, city, area, "%" + school + "%", 
-					"%" + gradeYear + "%", "%" + className + "%" };
-			classes = jdbcTemplate.query(sql, params, rowMapper);
+			classes = jdbcTemplate.query(sql, rowMapper);
 			classes = classes != null ? classes : new ArrayList<Class>();
 			successful = true;
 			message = "select<successful>";
@@ -387,6 +440,7 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
 		logger.info(dateFormat.format(new Date()) + "result: " + message);
 		return new Result<List<Class>>(successful, message, classes);
 	}
+
 
 	/**
 	 * @see chinaren.dao.ClassDao#insertClass(chinaren.model.Class)

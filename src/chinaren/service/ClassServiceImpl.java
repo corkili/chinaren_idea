@@ -95,34 +95,10 @@ public class ClassServiceImpl implements ClassService {
 	@Override
 	public Result<List<Class>> searchClasses(String province, String city, String area, String school, String gradeYear,
 			String className) {
-		Result<List<Class>> result;
-		if (province == null || province.trim().equals("")) {
-			logger.info(dateFormat.format(new Date()) + "search classes - all");
-			result = classDao.selectClasses();
-		} else if (city == null || city.trim().equals("")) {
-			logger.info(dateFormat.format(new Date()) + "search classes - " + province);
-			result = classDao.selectClasses(province.trim());
-		} else if (area == null || area.trim().equals("")) {
-			logger.info(dateFormat.format(new Date()) + "search classes - " + province + "::" + city);
-			result = classDao.selectClasses(province.trim(), city.trim());
-		} else if (school == null) {
-			logger.info(dateFormat.format(new Date()) + "search classes - " + province + "::" + city + "::" + area);
-			result = classDao.selectClasses(province.trim(), city.trim(), area.trim());
-		} else if (gradeYear == null) {
-			logger.info(dateFormat.format(new Date()) + "search classes - " + province + "::" + city + "::" + area
-					+ "::" + school);
-			result = classDao.selectClasses(province.trim(), city.trim(), area.trim(), school.trim());
-		} else if (className == null) {
-			logger.info(dateFormat.format(new Date()) + "search classes - " + province + "::" + city + "::" + area
-					+ "::" + school + "::" + gradeYear);
-			result = classDao.selectClasses(province.trim(), city.trim(), area.trim(), school.trim(), gradeYear.trim());
-		} else {
-			logger.info(dateFormat.format(new Date()) + "search classes - " + province + "::" + city + "::" + area
-					+ "::" + school + "::" + gradeYear + "::" + className);
-			result = classDao.selectClasses(province.trim(), city.trim(), area.trim(), 
-					school.trim(), gradeYear.trim(), className.trim());
-		}
-		return result;
+
+		logger.info(dateFormat.format(new Date()) + "search classes - " + province + "::" + city + "::" + area
+				+ "::" + school + "::" + gradeYear + "::" + className);
+		return classDao.selectClasses(province, city, area, school, gradeYear, className);
 	}
 
 	/**
@@ -193,6 +169,10 @@ public class ClassServiceImpl implements ClassService {
 		if (!result.isSuccessful()) {
 			logger.info(dateFormat.format(new Date()) + "apply to join class: failed - " + userId + " join " + classId);
 			return new Result<Boolean>(false, "不存在相应的班级", false);
+		}
+		if (result.getResult().getClassmates().contains(userId) || result.getResult().getNotApplys().contains(userId)) {
+			logger.info(dateFormat.format(new Date()) + "apply to join class: failed - " + userId + " join " + classId);
+			return new Result<Boolean>(false, "已加入班级或已申请加入班级", false);
 		}
 		if (!attendDao.insertAttend(userId, classId).isSuccessful()) {
 			logger.info(dateFormat.format(new Date()) + "apply to join class: failed - " + userId + " join " + classId);

@@ -7,12 +7,8 @@ function sendEmailFun() {
     }
     var emailStr = document.getElementById('email').value;
     $.post('sendEmail', { email: emailStr }, function (data) {
-        if (data.indexOf('successful') > 0) {
-            for (var j = wait; j >= 0; j--) {
-                setTimeout('doUpdate(' + j + ')', (wait - j) * 1000);
-            }
-        } else {
-            alert("邮件发送失败，请重试！");
+        for (var j = wait; j >= 0; j--) {
+            setTimeout('doUpdate(' + j + ')', (wait - j) * 1000);
         }
     });
 }
