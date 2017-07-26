@@ -92,5 +92,38 @@ public class MessageController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/myMessage", method = RequestMethod.GET)
+    public ModelAndView getMyMessageList(HttpSession session,
+                                       @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView("my_messages");
+        long userId = Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
+        Result<List<Message>> messagesResult = messageService.getUserMessages(userId);
+        List<Message> messages = messagesResult.getResult();
+        modelAndView.addObject("has_error", false)
+                .addObject("error_message", "")
+                .addObject("display_name", displayName)
+                .addObject("user_id", userId)
+                .addObject("messages", messages);
+        return modelAndView;
+    }
 
+    @RequestMapping(value = "/myMessage", method = RequestMethod.POST)
+    public ModelAndView getMyMessageList(HttpSession session,
+                                         @RequestParam("action") int action,
+                                         @RequestParam("messageId") long messageId,
+                                         @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView("my_messages");
+        if (action == 1) {
+            messageService.deleteMessage(messageId);
+        }
+        long userId = Long.parseLong(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
+        Result<List<Message>> messagesResult = messageService.getUserMessages(userId);
+        List<Message> messages = messagesResult.getResult();
+        modelAndView.addObject("has_error", false)
+                .addObject("error_message", "")
+                .addObject("display_name", displayName)
+                .addObject("user_id", userId)
+                .addObject("messages", messages);
+        return modelAndView;
+    }
 }

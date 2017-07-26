@@ -70,7 +70,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>班级留言</h3>
+                        <h3>我的留言</h3>
                     </div>
                 </div>
 
@@ -81,7 +81,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>${class_name}<small>留言板</small></h2>
+                                <h2>留言记录</h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
@@ -110,7 +110,7 @@
                                             <td class=" ">
                                                 <div class="col-md-12 row">
                                                     <div class="col-md-3">
-                                                        <span style="font-size: 15px">${message.name}</span>
+                                                        <span style="font-size: 15px">${message.className}</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 row">
@@ -129,14 +129,9 @@
                                                         <span style="font-size: 15px"><fmt:formatDate value="${message.msgTime}" pattern="yyyy-MM-dd HH:mm:ss"/></span>
                                                     </div>
                                                     <div class="col-md-offset-8 col-md-1">
-                                                        <form action="classMessage" method="post" onsubmit="return checkRemoveMessage(this);">
+                                                        <form action="myMessage" method="post">
                                                             <input type="hidden" name="action" value="1">
-                                                            <input type="hidden" name="user_id" value="${user_id}">
-                                                            <input type="hidden" name="msg_user_id" value="${message.userId}">
-                                                            <input type="hidden" name="class_id" value="${message.classId}">
-                                                            <input type="hidden" name="manager_id" value="${manager_id}">
-                                                            <input type="hidden" name="class_name" value="${message.className}">
-                                                            <input type="hidden" name="message_id" value="${message.messageId}">
+                                                            <input type="hidden" name="messageId" value="${message.messageId}">
                                                             <input type="submit" value="删除" class="btn btn-round btn-danger"
                                                                    onclick="return confirm('确定删除该留言吗？');">
                                                         </form>
